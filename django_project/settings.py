@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'brothers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,7 +106,7 @@ import netifaces
 
 
 def ip_addresses():
-    ip_list = []
+    ip_list = ['localhost']
     for interface in netifaces.interfaces():
         addrs = netifaces.ifaddresses(interface)
         for x in (netifaces.AF_INET, netifaces.AF_INET6):
