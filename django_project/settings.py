@@ -14,9 +14,6 @@ SECRET_KEY = credentials.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -111,7 +108,7 @@ import netifaces
 
 
 def ip_addresses():
-    ip_list = ['localhost']
+    ip_list = ['localhost', 'buakpsi.com']
     for interface in netifaces.interfaces():
         addrs = netifaces.ifaddresses(interface)
         for x in (netifaces.AF_INET, netifaces.AF_INET6):
