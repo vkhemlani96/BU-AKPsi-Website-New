@@ -1,0 +1,206 @@
+#navbar, #navbar_small, #navbar_eye2eye {
+	width: 100%;
+	background-color: #000033;
+/*    box-shadow: 0 5px 10px #888888;*/
+}
+#navbar {
+/*	background-color:rgba(0,0,51,.7);*/
+}
+#navbar h1 {
+	text-align: center;
+	font-family: "Bebas Neue";
+	color: white;
+	font-size: 70px;
+	padding: 20px 0 0 0;
+	font-weight: normal !important;
+}
+#navbar a, #navbar_eye2eye a {
+	text-decoration: none;
+	color: white;
+	font-weight: normal !important;
+}
+#navbar > ul, #navbar_eye2eye ul {
+	width: 980px;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 10px;
+}
+#navbar > ul > li, #navbar_eye2eye > ul > li {
+	display: inline-block;
+/*	border-bottom: solid 4px #000033;*/
+}
+#navbar > ul > li:hover, #navbar_eye2eye > ul > li:hover {
+	border-bottom: solid 4px #bda75d;
+}
+#navbar p a, #navbar_eye2eye p a {
+	color: white;
+	font-family: "Bebas Neue";
+	font-size: 20px;
+	font-weight: normal;
+	text-decoration: none;
+	padding: 10px 15px;
+	display: block
+}
+#navbar .dropdown {
+	top:135px;
+}
+#navbar .dropdown ul {
+	background-color:white;
+/*	border: black 1px solid;*/
+}
+#navbar .dropdown p a {
+	color: #000033;
+	padding: 15px 0 12px;
+}
+#navbar .dropdown a:hover {
+	color: white;
+}
+#navbar_small {
+	border-bottom: #bda75d solid 4px;
+	height: 65px;
+}
+#navbar_small > * {
+	display: inline-block;
+}
+#navbar_small h1 {
+	font-family: "Bebas Neue";
+	color: white;
+	padding: 0 10px;
+	margin: auto 0;
+	font-size: 40px;
+	line-height: 55px;
+	padding-left: 50px;
+	padding-top: 10px;
+	font-weight: normal;
+}
+#navbar_small a {
+	text-decoration: none;
+	color: white;
+	font-weight: normal;
+}
+#navbar_small > ul {
+	float: right;
+	padding-right: 50px;
+}
+#navbar_small li {
+	display: inline-block;
+	height: inherit;
+	position: relative;
+	text-align: center;
+}
+#navbar_small > ul > li > p > a {
+	padding: 25px 17px 18px 17px;
+}
+#navbar_small > ul > li > p {
+	padding: 25px 0 18px 0;
+}
+#navbar li:hover, #navbar_small li:hover, #navbar_eye2eye li:hover {
+	background-color: #33335c;
+	cursor: pointer;
+}
+#navbar li:hover .dropdown, #navbar_small li:hover .dropdown {
+	display: block;
+}
+#navbar_small li:hover .dropdown p:hover {
+	color: white;
+}
+#navbar_small p a {
+	color: white;
+	font-family: "Bebas Neue";
+	font-size: 20px;
+	font-weight: normal;
+	text-decoration: none;
+}
+#navbar_small .dropdown ul {
+	background-color: #000033;
+}
+#navbar_small .dropdown p {
+	color: white;
+}
+
+.dropdown {
+	position: absolute;
+	z-index: 3;
+	padding: 0;
+	top: 50px;
+	width: 135px;
+	display: none;
+	text-align: center;
+}
+.dropdown > * {
+	display: block;
+}
+.dropdown .arrow-up {
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #bda75d;
+	margin: 0 auto;
+}
+.dropdown ul {
+	border-top: 3px #bda75d solid !important;
+	width: 100%;
+}
+.dropdown li {
+	width: 100%;
+}
+.dropdown p a {
+	text-align: center;
+	width: 100%;
+	padding: 15px 0 12px;
+	display: block;
+}
+.dropdown p a {
+}
+
+.footer {
+/*	padding: 0 40px;*/
+	background-color: #000033;
+	border-top: 1px rgba(255,255,255,.4) solid;
+}
+.footer > div {
+	height: inherit;
+	padding: 20px 0;
+	position: relative
+}
+.footer .footer_img {
+	background-image: url(../img/footer_coat_of_arms.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	background-size: auto 140%;
+	width: 100px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	opacity: 0.4
+}
+.footer h3 {
+	font-size: 25px;
+	margin-top: 5px;
+	text-align: left;
+	color: white;
+	margin-left: 80px;
+	display: inline-block;
+	font-weight: 400;
+}
+.footer ul {
+	display: inline-block;
+	float: right;
+}
+.footer li {
+	display: inline-block;
+}
+.footer ul a {
+	color: white;
+	line-height: 30px;
+	opacity: .6;
+	font-weight: 400;
+	text-decoration: none;
+}
+.footer ul a:hover {
+	opacity: 1;
+}
+.footer ul h5 {
+	padding-left: 40px;
+}

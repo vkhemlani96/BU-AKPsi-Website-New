@@ -1,0 +1,29 @@
+{% load static %}
+
+<head lang="en">
+	<title>Alpha Kappa Psi Nu Chapter{% if title %} | {{title}}{% endif %}</title>
+
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/jquery.color.js' %}"></script>
+	<link 	href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+	<link 	href="{% static 'css/navbar.css' %}" rel="stylesheet" />
+	<link 	rel="manifest" href="{% static 'icon/manifest.json' %}">
+
+	<link sizes="57x57" 	href="{% static 'icon/apple-icon-57x57.png' %}" 	rel="apple-touch-icon">
+	<link sizes="60x60" 	href="{% static 'icon/apple-icon-60x60.png' %}" 	rel="apple-touch-icon">
+	<link sizes="72x72" 	href="{% static 'icon/apple-icon-72x72.png' %}" 	rel="apple-touch-icon">
+	<link sizes="76x76" 	href="{% static 'icon/apple-icon-76x76.png' %}" 	rel="apple-touch-icon">
+	<link sizes="114x114" 	href="{% static 'icon/apple-icon-114x114.png' %}" 	rel="apple-touch-icon">
+	<link sizes="120x120" 	href="{% static 'icon/apple-icon-120x120.png' %}" 	rel="apple-touch-icon">
+	<link sizes="144x144" 	href="{% static 'icon/apple-icon-144x144.png' %}" 	rel="apple-touch-icon">
+	<link sizes="152x152" 	href="{% static 'icon/apple-icon-152x152.png' %}" 	rel="apple-touch-icon">
+	<link sizes="180x180" 	href="{% static 'icon/apple-icon-180x180.png' %}" 	rel="apple-touch-icon">
+	<link sizes="192x192"  	href="{% static 'icon/android-icon-192x192.png' %}" rel="icon" type="image/png">
+	<link sizes="32x32" 	href="{% static 'icon/favicon-32x32.png' %}" 		rel="icon" type="image/png">
+	<link sizes="96x96" 	href="{% static 'icon/favicon-96x96.png' %}" 		rel="icon" type="image/png">
+	<link sizes="16x16" 	href="{% static 'icon/favicon-16x16.png' %}" 		rel="icon" type="image/png">
+
+	<meta name="msapplication-TileColor" 	content="#000033">
+	<meta name="msapplication-TileImage" 	content="{% static 'icon/ms-icon-144x144.png' %}">
+	<meta name="theme-color" 				content="#000033">
+</head>

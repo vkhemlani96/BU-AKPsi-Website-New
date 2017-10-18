@@ -1,0 +1,55 @@
+h1, h2, a[href] {
+	color: #131557;
+}
+
+.gold_seperator_small {
+	background-color: #e4007f;
+}
+
+.seperator,
+.table_vertical_seperator > div,
+.blue_background, 
+.button,
+#banner,
+#social_media td:first-child:hover,
+#navbar, #navbar_small, 
+.footer,
+#navbar_small .dropdown ul
+{
+	background-color: #131557;
+}
+
+.button,
+.brother_img img,
+.nccg_image img,
+{
+	border-color: #002486;
+}
+
+#navbar_small, #eye2eye_navbar, .button_gold  {
+	border-color: #e4007f;
+}
+
+.button_gold:hover {
+	background-color: #e4007f;
+}
+
+.dropdown ul {
+	border-top-color: #e4007f !important;
+}
+
+.dropdown .arrow-up {
+	border-bottom:5px solid #e4007f;
+}
+
+
+#navbar_small > ul > li > p > a[href*="rush"],
+#navbar_small a[style*="color"],
+.footer a[style*="color"]{
+	color: white !important;
+}
+
+#navbar_eye2eye > ul > li:hover {
+	background-color: #002486;
+	border-bottom: solid 4px #e4007f;
+}

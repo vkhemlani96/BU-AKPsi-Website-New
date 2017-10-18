@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% include "buakpsi/header.html" %}
+
+<body>
+	{{ navbar }}
+
+	{{ body }}
+
+	{% include "buakpsi/footer.html" %}
+</body>
+
+{% if post_body_script %}
+<script>
+{{ post_body_script }}
+</script>
+{% endif %}
+
+</html>
