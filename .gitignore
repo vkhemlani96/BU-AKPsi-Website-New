@@ -1,3 +1,8 @@
 **/*.pyc
+
 django_project/static/*
 django_project/credentials.py
+
+/brothers/static/brothers/*
+!/brothers/static/brothers/*/*thumb.png
+!/brothers/static/brothers/tools/*

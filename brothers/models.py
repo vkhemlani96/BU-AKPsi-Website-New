@@ -27,6 +27,9 @@ class Brother(models.Model):
     def __str__(self):
         return self.first_name + " " + self.last_name
 
+    def thumbnail_image(self):
+        return (self.class_name + "s/" + self.last_name + "_" + self.first_name + "_thumb.png").lower().replace(" ", "_")
+
 class EBoardMember(models.Model):
     position = models.CharField(max_length=45)
     order = models.IntegerField()

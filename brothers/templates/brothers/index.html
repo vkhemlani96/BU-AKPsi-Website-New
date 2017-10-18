@@ -1,0 +1,59 @@
+{% load static %}
+<script src="{% static 'js/jquery.lazyload.js' %}"></script>
+
+<style>
+.brotherIcon {
+	opacity: 1;	
+}
+.brotherIcon:hover {
+	opacity: 1;	
+}
+.brotherLinkedIn img {
+	position:absolute;
+	bottom: 12px;
+	right: 12px;
+}
+.brotherEye2Eye img {
+	position:absolute;
+	bottom: 12px;
+	left: 12px;
+}
+</style>
+
+<div class="center vertical_padding title_section" style="padding-bottom: 40px;">
+	<h1>Active Brothers</h1>
+	<div class="seperator"></div>
+	<h2>Meet the Men and Women of Nu Chapter</h2>
+</div>
+
+<div class="vertical_padding blue_background eboard_group">
+	<div class="center brother_class">
+		<h3>Executive Board</h3>
+		<div class="gold_seperator"></div>
+
+		{% for member in eboard %}
+
+			{% include 'brothers/eboard_square.html' with member=member %}
+
+		{% endfor %}
+
+
+	</div>
+
+</div>
+
+{% for class in active_classes %} 
+	<div class="center vertical_padding brother_class">
+		<h2><strong>{{ class }}</strong></h2>
+		<div class="seperator"></div>
+		<div>
+
+			{% for brother in brothers %}
+				{% if brother.class_name == class %}
+					{% include 'brothers/brother_square.html' with brother=brother %}
+				{% endif %}
+			{% endfor %}
+
+		</div>
+	</div>
+{% endfor %}

@@ -1,0 +1,37 @@
+{% load static %}
+
+<div class="brother_img">
+	{% with 'brothers/'|add:brother.thumbnail_image as img_url %}
+	<img height="200" width="200" onmerror="$(this).attr('src','/static/img/brothers/nophoto.png');" class="lazy" data-original="{% static img_url %}">
+	{% endwith %}
+
+	<div>
+		<p class="name">{{brother.first_name}} {{brother.last_name}}</p>
+		<div class="gold_seperator"></div>
+
+		<p class="info">
+			<strong>Year:</strong> {{brother.year}}
+			<br>
+			<strong>Major:</strong> {{brother.major}} ({{brother.major_school}})
+			{% if brother.minor %}
+			<br>
+			<strong>Minor:</strong> {{brother.minor}} ({{brother.minor_school}})
+			{% endif %}
+		</p>
+
+		{% if brother.linkedin %}
+		<a target="_blank" href="{{brother.linkedin}}" class="brotherLinkedIn brotherIcon"><img src="{% static 'brothers/icons/linked_in_white.png' %}"></a>
+		{% endif %}
+
+		{% if brother.eye2eye %}
+		<a target="_blank" href="/eye2eye/index.php" class="brotherEye2Eye brotherIcon"><img src="{% static 'brothers/icons/eye2eye_white.png' %}"></a>
+		{% endif %}
+
+		{% if brother.nccg %}
+		<a target="_blank" href="/nccg/index.php" class="brotherEye2Eye brotherIcon">
+			<img {% if brother.eye2eye %}style="left: 45px"{% endif %} src="{% static 'brothers/icons/nccg_white.png' %}">
+		</a>
+		{% endif %}
+
+	</div>
+</div>
