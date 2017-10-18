@@ -26,3 +26,12 @@ class Brother(models.Model):
 
     def __str__(self):
         return self.first_name + " " + self.last_name
+
+class EBoardMember(models.Model):
+    position = models.CharField(max_length=45)
+    order = models.IntegerField()
+    brother = models.OneToOneField(Brother)
+
+    class Meta:
+        verbose_name = "Executive Board Member"
+        verbose_name_plural = "Executive Board Members"
