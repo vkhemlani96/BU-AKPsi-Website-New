@@ -20,14 +20,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'brothers',
+    'buakpsi',
+    'nccg',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'brothers',
-    'buakpsi',
 )
 
 MIDDLEWARE_CLASSES = (
