@@ -1,22 +1,15 @@
 from django.db import models
 from django.db.models import Case, When, Value, IntegerField
 from brothers.models import Brother
+from buakpsi.models import PositionManager
 
-class NCCGManager(models.Manager):
+class NCCGManager(PositionManager):
     positions = [
         'Executive Director',
         'Engagement Manager',
         'Senior Associate',
         'Associate'
     ]
-
-    def get_queryset(self):
-        return super(NCCGManager, self).get_queryset().annotate(
-            position_order=Case(
-                *[When(position=x, then=Value(i)) for i, x in enumerate(self.positions)],
-                output_field = IntegerField()
-            )
-        ).order_by('position_order', 'brother__last_name')
 
 class NCCGMember(models.Model):
     # Order is done through sorting in view
