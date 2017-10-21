@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.shortcuts import render
+from buakpsi.models import FAQ
 
 def render_page(request, context, navbar_size = 'small'):
 	context['navbar'] = navbar(navbar_size == 'small')
@@ -32,4 +33,27 @@ def index(request):
 		'post_body_script': post_body_script,
 	}
 
+	return render_page(request, context, navbar_size='large')
+
+def faq(request):
+
+	body_context = {
+		'FAQ': FAQ.objects.all(),
+	}
+
+	body = render_to_string('buakpsi/faq.html', body_context)
+	context = {
+		'body': body,
+	}
+	print FAQ.objects.all()
+	return render_page(request,context)
+
+
+def contact(request):
+	body = render_to_string('buakpsi/contact.html')
+	post_body_script = render_to_string('buakpsi/contact.js')
+	context = {
+		'body': body,
+		'post_body_script': post_body_script,
+	}
 	return render_page(request, context, navbar_size='large')
