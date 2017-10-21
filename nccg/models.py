@@ -16,14 +16,14 @@ class NCCGManager(models.Manager):
                 *[When(position=x, then=Value(i)) for i, x in enumerate(self.positions)],
                 output_field = IntegerField()
             )
-        ).order_by('position_order')
+        ).order_by('position_order', 'brother__last_name')
 
 class NCCGMember(models.Model):
     # Order is done through sorting in view
     brother = models.OneToOneField(Brother)
     position = models.CharField(max_length=45)
     bio = models.TextField()
-    # objects = NCCGManager()
+    objects = NCCGManager()
 
     def __str__(self):
         return "%s %s (%s)" % (self.brother.first_name, self.brother.last_name, self.position)
