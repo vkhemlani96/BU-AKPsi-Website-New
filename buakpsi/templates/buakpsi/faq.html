@@ -1,0 +1,22 @@
+<div class="center vertical_padding title_section">
+		<h1>Frequently Asked Questions</h1>
+		<div class="seperator"></div>
+		<h2>A Few Answers to Our Most Common Questions</h2>
+	</div>
+	
+	<div class="center vertical_padding" style="padding-bottom: 0px;">
+		<table class="faq_table">
+			{% for question in FAQ %}
+
+			<tr>
+				<td colspan="3">
+					<h5>{{ question.question }}</h5>
+					<p>{{ question.answer }}</p>
+				</td>
+			</tr>
+
+			{% endfor %}
+		</table>
+		
+
+	</div>

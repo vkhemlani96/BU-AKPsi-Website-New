@@ -1,0 +1,114 @@
+{% load static %}
+
+<script src="{% static 'js/countup.js' %}"></script>
+
+<div class="center vertical_padding title_section">
+	<h1>Alumni Brothers</h1>
+	<div class="seperator"></div>
+</div>
+
+<div class="center vertical_padding">
+	<p class="centered_text">The network of Alpha Kappa Psi extends far beyond our Brotherhood at Nu Chapter at Boston University. We have a network of Brothers across the globe that include Presidents Reagan and Nixon and notable business and industry leaders including Malcom Forbes, Jr., J.C. Penney, and J. Willard Marriott. Our own alumni network at Nu Chapter spans multiple industries ranging from investment banking and consulting to entrepreneurship and film.</p>
+</div>
+
+<div class="center stats">
+	<div>
+		<h1 id="chapterAlumni">0</h1>
+		<h4>CHAPTER ALUMNI</h4>
+	</div><div>
+	<h1 id="alumniWorldwide">0</h1>
+	<h4>ALUMNI WORLDWIDE</h4>
+	</div><div>
+	<h1 id="alumniChapters">0</h1>
+	<h4>ALUMNI CHAPTERS</h4>
+	</div>
+</div>
+
+<table class=" blue_background alumni_table">
+	<tr> 
+		<td>
+			<p class="center" style="padding-top: 40px; text-align: center">We are incredibly proud of all of our Alumni Brothers here at Nu Chapter and want to thank them for continuing to be role models and supporting us throughout our endeavors!</p>
+		</td>
+	</tr>
+	<tr>
+		<td style="height: 94px; position: relative; overflow-x: hidden;">
+			<div style="overflow-x: hidden;width: 200vw;position: absolute; top: 0; margin-left: -50vw;">
+
+				{% for year in years %}
+					<h3 class="hidden hidden_left"></h3>
+				{% endfor %}
+
+				{% for year in years %}
+					{% if year == max_year %}
+						<h3 data-year="{{year}}" class="selected">Class of {{year}}</h3>
+					{% else %}
+						<h3 data-year="{{year}}">{{year}}</h3>
+					{% endif %}
+				{% endfor %}
+
+				{% for year in years %}
+					<h3 class="hidden hidden_right"></h3>
+				{% endfor %}
+
+			</div>
+		</td>
+	</tr>
+	<tr class="blue_background">
+		<td style="position:relative; height: 310px; background-color:#000033 ">
+			{% for class, brothers in active_brothers.items %}
+				{% if class == max_year %}
+					<div id="year{{ class }}" style="left:0; display:block" class="center blue_background alumni_cell visible_cell">
+				{% else %}
+					<div id="year{{ class }}" style="left:0;" class="center blue_background alumni_cell">
+				{% endif %}
+						<div class="center">
+							{% for brother in brothers %}	
+							<p>{{brother.first_name}} {{brother.last_name}}</p>
+							{% endfor %}	
+						</div>
+					</div>
+			{% endfor %}
+
+			<!--
+{# 
+			for ($x = $firstGraduatingClass; $x <= $lastGraduatingClass; $x++) {
+				$display = $x == $lastGraduatingClass ? " display:block" : "";
+				$visible_cell = $x == $lastGraduatingClass ? "visible_cell" : "";
+				echo "<div id="year$x"style="left:0;$display" class="center blue_background alumni_cell $visible_cell">
+						<div class="center">";
+				$graduates = $graduateClasses["$x"];
+				foreach($graduates as $name)
+					echo "<p>$name</p>";
+
+				echo "</div> </div>";
+			} #}
+		-->
+
+
+		</td>
+	</tr>
+</table>
+
+<div class="vertical_padding alumni_companies">
+	<h2>Alumni <strong>Careers</strong></h2>
+	<div class="seperator"></div>
+	<p class="center">Since being re-chartered in 2007, Nu Chapter has graduated alumni who have begun prestigious careers in fields ranging from investment banking to marketing to law. Below is a list of some of the firms from which our alumni have accepted offers. </p>
+	<div class="alumni_scroll">
+		<img src="{% static 'alumni_companies/accenture_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/amazon_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/boa_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/citigroup_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/dbs_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/deloitte_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/fleishmanhilliard_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/goldman_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/hsbc_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/ibm_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/jpmorgan_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/micron_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/pwc_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/ritzcarlton_thumb.png' %}" />
+		<img src="{% static 'alumni_companies/santander_thumb.png' %}" />
+	</div>
+	<div style="height:115px"></div>
+</div>
