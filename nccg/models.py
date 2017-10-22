@@ -12,7 +12,6 @@ class NCCGManager(PositionManager):
     ]
 
 class NCCGMember(models.Model):
-    # Order is done through sorting in view
     brother = models.OneToOneField(Brother)
     position = models.CharField(max_length=45)
     bio = models.TextField()
