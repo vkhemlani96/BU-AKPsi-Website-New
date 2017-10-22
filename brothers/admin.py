@@ -8,9 +8,8 @@ class BrotherAdmin(admin.ModelAdmin):
     list_filter = ('status', 'class_name', 'year')
 
 class EBoardMemberAdmin(admin.ModelAdmin):
-    list_display = ('order', 'position', 'brother')
-    list_display_links = ('order', 'position')
-    ordering = ['order']
+    list_display = ('position', 'brother')
+    list_display_links = ('position', )
 
 admin.site.register(Brother, BrotherAdmin)
 admin.site.register(EBoardMember, EBoardMemberAdmin)
