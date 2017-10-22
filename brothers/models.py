@@ -14,7 +14,7 @@ class Brother(models.Model):
     last_name = models.CharField(max_length=20)
     class_name = models.CharField(max_length=8)
     year = models.CharField(max_length=4)
-    major_school = models.CharField(max_length=255)
+    major_school = models.CharField(max_length=255, null=True)
     major = models.CharField(max_length=255)
     minor_school = models.CharField(max_length=255)
     minor = models.CharField(max_length=255)
