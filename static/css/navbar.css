@@ -165,7 +165,7 @@
 	position: relative
 }
 .footer .footer_img {
-	background-image: url(../img/footer_coat_of_arms.png);
+	background-image: url(/static/buakpsi/img/footer_coat_of_arms.png);
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: auto 140%;

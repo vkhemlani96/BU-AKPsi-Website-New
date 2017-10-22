@@ -6,4 +6,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index),
     url(r'^brothers/', include('brothers.urls')),
+    url(r'^faq/', views.faq),
+    url(r'^contact/', views.contact),
 ]
