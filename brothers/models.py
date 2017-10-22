@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-
+from buakpsi.models import PositionManager
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Brother(models.Model):
@@ -30,11 +30,31 @@ class Brother(models.Model):
     def thumbnail_image(self):
         return (self.class_name + "s/" + self.last_name + "_" + self.first_name + "_thumb.png").lower().replace(" ", "_")
 
+class EBoardManager(PositionManager):
+    positions = [
+        "President",
+        "Executive Vice President",
+        "Master of Rituals",
+        "Vice President of Finance",
+        "Vice President of Membership",
+        "Vice President of Marketing",
+        "Vice President of Administrative Affairs",
+        "Community Service Director",
+        "Professional Director",
+        "Scholarship Director",
+        "Public Relations Director",
+        "Social Director",
+        "Historian"
+    ]
+
 class EBoardMember(models.Model):
     position = models.CharField(max_length=45)
-    order = models.IntegerField()
     brother = models.OneToOneField(Brother)
+    objects = EBoardManager()
 
     class Meta:
         verbose_name = "Executive Board Member"
         verbose_name_plural = "Executive Board Members"
+
+    def __str__(self):
+        return "%s %s (%s)" % (self.brother.first_name, self.brother.last_name, self.position)

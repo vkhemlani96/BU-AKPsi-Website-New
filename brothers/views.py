@@ -6,7 +6,7 @@ from .models import EBoardMember, Brother
 def index(request):
 
 	body_context = {
-		'eboard': EBoardMember.objects.all().order_by("order"),
+		'eboard': EBoardMember.objects.all(),
 		'brothers': Brother.objects.filter(status = Brother.ACTIVE).order_by("last_name"),
 		'active_classes': ["Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Transfer"]
 	}
