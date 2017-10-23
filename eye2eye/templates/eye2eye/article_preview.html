@@ -1,0 +1,7 @@
+<a href="blog/{{article.slug}}" style="display:block">
+	<div class="blog_preview">
+		<h2><strong>{{article.title}}</strong></h2>
+		<h4><a href="../research.php#nguyen">{{article.author}}</a> | {{article.created_at}}</h4>
+		{{article.preview|safe}}
+	</div>
+</a>
