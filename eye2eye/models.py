@@ -3,6 +3,7 @@ from buakpsi.models import PositionManager
 from brothers.models import Brother
 from datetime import date
 import re
+import json
 
 class Eye2EyeManager(PositionManager):
   positions = [
@@ -35,6 +36,9 @@ class BlogArticle(models.Model):
   body = models.TextField()
   footnotes = models.TextField()
   slug = models.SlugField()
+
+  def footnote_array(self):
+    return json.loads(self.footnotes)
 
   def __str__(self):
     return "%s (by %s %s)" % (self.title, self.author.first_name, self.author.last_name)
