@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     'brothers',
     'buakpsi',
     'nccg',
+    'rush',
 
     'django.contrib.admin',
     'django.contrib.auth',

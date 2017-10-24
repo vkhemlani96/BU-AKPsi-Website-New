@@ -45,7 +45,6 @@ def faq(request):
 	context = {
 		'body': body,
 	}
-	print FAQ.objects.all()
 	return render_page(request,context)
 
 
