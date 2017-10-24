@@ -35,6 +35,14 @@ def index(request):
 
 	return render_page(request, context, navbar_size='large')
 
+def about(request):
+	body = render_to_string('buakpsi/about.html')
+	context = {
+		'body': body
+	}
+
+	return render_page(request, context)
+
 def faq(request):
 
 	body_context = {
@@ -45,7 +53,6 @@ def faq(request):
 	context = {
 		'body': body,
 	}
-	print FAQ.objects.all()
 	return render_page(request,context)
 
 
