@@ -4,12 +4,11 @@ from django.shortcuts import render
 from buakpsi.models import FAQ
 
 def render_page(request, context, navbar_size = 'small'):
-	context['navbar'] = navbar(navbar_size == 'small')
+	context['navbar'] = navbar(navbar_size)
 	return render(request, 'buakpsi/wrapper.html', context)
 
 def navbar(small):
 	context = dict()
-
 	if small:
 		context = {
 			'navbar_class': 'navbar_small',
@@ -45,7 +44,6 @@ def faq(request):
 	context = {
 		'body': body,
 	}
-	print FAQ.objects.all()
 	return render_page(request,context)
 
 
