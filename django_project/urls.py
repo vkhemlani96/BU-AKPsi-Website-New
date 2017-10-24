@@ -5,7 +5,8 @@ from buakpsi import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index),
-    url(r'^brothers/', include('brothers.urls')),
+    url(r'^rush\/*$', include('rush.urls')),
+    url(r'^brothers\/*', include('brothers.urls')),
     url(r'^faq/', views.faq),
     url(r'^contact/', views.contact),
 ]
