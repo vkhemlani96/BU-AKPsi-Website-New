@@ -111,7 +111,7 @@ import netifaces
 
 
 def ip_addresses():
-    ip_list = ['localhost', 'buakpsi.com']
+    ip_list = ['localhost', 'buakpsi.com', 'www.buakpsi.com']
     for interface in netifaces.interfaces():
         addrs = netifaces.ifaddresses(interface)
         for x in (netifaces.AF_INET, netifaces.AF_INET6):
