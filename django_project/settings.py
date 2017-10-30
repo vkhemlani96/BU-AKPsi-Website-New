@@ -19,8 +19,9 @@ DEBUG = True
 INSTALLED_APPS = (
     'brothers',
     'buakpsi',
-    'nccg',
     'eye2eye',
+    'nccg',
+    'rush',
 
     'django.contrib.admin',
     'django.contrib.auth',
