@@ -21,9 +21,12 @@ h1, h2, a[href] {
 
 .button,
 .brother_img img,
-.nccg_image img,
 {
 	border-color: #002486;
+}
+
+.brother_img img {
+	margin-left: 0 !important;
 }
 
 #navbar_small, #eye2eye_navbar, .button_gold  {

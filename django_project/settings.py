@@ -20,6 +20,7 @@ INSTALLED_APPS = (
     'brothers',
     'buakpsi',
     'nccg',
+    'eye2eye',
 
     'django.contrib.admin',
     'django.contrib.auth',
