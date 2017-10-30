@@ -1,0 +1,23 @@
+{% load static %}
+<link href="{% static 'css/eye2eye_override.css' %}" rel="stylesheet" />
+
+<div class="vertical_padding title_section">
+	<h1>Research Blog</h1>
+	<div class="seperator"></div>
+	<h2>Eye2Eye</h2>
+</div>
+
+<div class="center vertical_padding" style="width: 90%; max-width: 1200px">
+	<p style="text-align: center; margin-bottom: 20px;" class="center">
+		As part of our mission, Eye2Eye is invested in fostering research in the field of gender equality and using what we gather to educate the public on the severity of the issue. While we are excited to share our major research project at our conference in the spring, our research analysts has been developing blog articles sharing what they've learned and their prespectives as students experiencing and witnessing the epidemic. We encourage you to read and share the articles below as take part in our efforts to spread the word on the issue. 
+	</p>
+
+	<div class="table_seperator"></div>
+
+	{% for article in articles %}
+	
+		{% include 'eye2eye/article_preview.html' with article=article %}
+
+	{% endfor %}
+
+</div>

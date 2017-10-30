@@ -2,7 +2,7 @@
 
 <div class="brother_img">
 	{% with 'brothers/'|add:brother.thumbnail_image as img_url %}
-	<img height="200" width="200" onmerror="$(this).attr('src','/static/img/brothers/nophoto.png');" class="lazy" data-original="{% static img_url %}">
+	<img height="200" width="200" onerror="$(this).attr('src','/static/img/brothers/nophoto.png');" class="lazy" data-original="{% static img_url %}">
 	{% endwith %}
 
 	<div>
@@ -10,6 +10,10 @@
 		<div class="gold_seperator"></div>
 
 		<p class="info">
+			{% if detail %}
+			<strong>Class:</strong> {{brother.class_name}}
+			<br>
+			{% endif %}
 			<strong>Year:</strong> {{brother.year}}
 			<br>
 			<strong>Major:</strong> {{brother.major}} ({{brother.major_school}})
@@ -18,6 +22,8 @@
 			<strong>Minor:</strong> {{brother.minor}} ({{brother.minor_school}})
 			{% endif %}
 		</p>
+
+		{% if not detail %}
 
 		{% if brother.linkedin %}
 		<a target="_blank" href="{{brother.linkedin}}" class="brotherLinkedIn brotherIcon"><img src="{% static 'brothers/icons/linked_in_white.png' %}"></a>
@@ -31,6 +37,8 @@
 		<a target="_blank" href="/nccg/index.php" class="brotherEye2Eye brotherIcon">
 			<img {% if brother.eye2eye %}style="left: 45px"{% endif %} src="{% static 'brothers/icons/nccg_white.png' %}">
 		</a>
+		{% endif %}
+
 		{% endif %}
 
 	</div>
