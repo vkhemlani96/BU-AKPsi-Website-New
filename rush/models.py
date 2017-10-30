@@ -53,3 +53,18 @@ class RushEvent(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def location(self):
+		location = ""
+		if len(self.building.abbreviation):
+			location = self.building.abbreviation
+		else:
+			location = self.building.name
+
+		if len(self.room_number):
+			location += " " + self.room_number
+
+		if len(self.room_long_name):
+			location += " (" + self.room_long_name + ")"
+
+		return location
