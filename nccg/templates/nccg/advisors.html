@@ -1,0 +1,25 @@
+{% load static %}	
+	<div class="vertical_padding title_section">
+		<h1>Our Advisors</h1>
+		<div class="seperator"></div>
+		<h2>Nu Chapter Consulting Group</h2>
+	</div>
+	
+	<div class="center vertical_padding" style="width: 90%; max-width: 1200px">
+		<p style="padding-bottom:40px; text-align: center" class="indented_text">Faculty Advisors are experts in their fields who are available upon request to provide assistance with the development<br>of solutions for the client, as well as to review and give feedback on finished work.</p>
+		<table class="nccg_advisor_table">
+		{% for advisor in advisors %}
+					<tr>
+						<td class="nccg_advisor_image_cell">
+							<img src="../img/nccg/{{advisor.first_name|lower}}_{{advisor.last_name|lower}}_thumb.png">
+						</td>
+						<td class="nccg_advisor_bio_cell">
+							<h2 class="nccg_name"><strong>{{advisor.first_name}} {{advisor.last_name}}</strong></h2>
+							<h4>{{advisor.title}}</h4>
+							<div class="seperator"></div>
+							<p>{{advisor.bio}}</p>
+						</td>
+					</tr>
+		{% endfor %}
+		</table>
+	</div>

@@ -45,7 +45,6 @@ def faq(request):
 	context = {
 		'body': body,
 	}
-	print FAQ.objects.all()
 	return render_page(request,context)
 
 
@@ -56,4 +55,4 @@ def contact(request):
 		'body': body,
 		'post_body_script': post_body_script,
 	}
-	return render_page(request, context, navbar_size='large')
+	return render_page(request, context)

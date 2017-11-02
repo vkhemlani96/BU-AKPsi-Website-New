@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^brothers/', include('brothers.urls')),
     url(r'^faq/', views.faq),
     url(r'^contact/', views.contact),
+    url(r'^nccg/', include('nccg.urls')),
 ]
