@@ -1,12 +1,23 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import django_project.credentials as credentials
+import netifaces
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Find out what the IP addresses are at run time
+# This is necessary because otherwise Gunicorn will reject the connections
+def ip_addresses():
+    ip_list = ['localhost', 'buakpsi.com', 'www.buakpsi.com']
+    for interface in netifaces.interfaces():
+        addrs = netifaces.ifaddresses(interface)
+        for x in (netifaces.AF_INET, netifaces.AF_INET6):
+            if x in addrs:
+                ip_list.append(addrs[x][0]['addr'])
+    return ip_list
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+# Discover our IP address
+ALLOWED_HOSTS = ip_addresses()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = credentials.SECRET_KEY
@@ -14,15 +25,14 @@ SECRET_KEY = credentials.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = (
     'brothers',
     'buakpsi',
+    'eye2eye',
     'nccg',
+    'rush',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -66,7 +76,6 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -77,6 +86,13 @@ DATABASES = {
         'PORT': credentials.DB['PORT'],
     }
 }
+
+# Emails
+EMAIL_HOST = credentials.EMAIL['HOST']
+EMAIL_HOST_USER = credentials.EMAIL['HOST_USER']
+EMAIL_HOST_PASSWORD = credentials.EMAIL['HOST_PASSWORD']
+EMAIL_PORT = credentials.EMAIL['PORT']
+EMAIL_USE_TLS = credentials.EMAIL['USE_TLS']
 
 
 # Internationalization
@@ -101,25 +117,3 @@ STATIC_ROOT = '/home/django/django_project/django_project/static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# Allow Django from all hosts. This snippet is installed from
-# /var/lib/digitalocean/allow_hosts.py
-
-import os
-import netifaces
-
-# Find out what the IP addresses are at run time
-# This is necessary because otherwise Gunicorn will reject the connections
-
-
-def ip_addresses():
-    ip_list = ['localhost']
-    for interface in netifaces.interfaces():
-        addrs = netifaces.ifaddresses(interface)
-        for x in (netifaces.AF_INET, netifaces.AF_INET6):
-            if x in addrs:
-                ip_list.append(addrs[x][0]['addr'])
-    return ip_list
-
-# Discover our IP address
-ALLOWED_HOSTS = ip_addresses()

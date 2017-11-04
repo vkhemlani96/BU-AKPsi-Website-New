@@ -1,0 +1,33 @@
+{% load static %}
+
+<script src="{% static 'js/jquery.lazyload.js' %}"></script>
+<link 	href="{% static 'css/eye2eye_override.css' %}" rel="stylesheet" />
+
+
+<div class="vertical_padding title_section">
+	<h1>Board of Directors</h1>
+	<div class="seperator"></div>
+	<h2>Eye2Eye</h2>
+</div>
+
+<div class="vertical_padding">
+	<table class="nccg_table center">
+
+		{% for member in members %}
+		<tr>
+			<td>
+				
+				{% include 'brothers/brother_square.html' with brother=member.brother detail=True%}
+
+			</td>
+			<td class="nccg_bio_cell">
+				<h2 class="nccg_name"><strong>{{member.brother}}</strong> {{member.position}}
+					<a target="_blank" href="{{member.brother.linkedin}}"><img height="24" style="float:right; margin-top:2px" src="{% static 'nccg/linkedin.png' %}"></a>
+				</h2>
+				<p>{{member.bio}}</p>
+			</td>
+		</tr>
+		{% endfor %}
+
+	</table>
+</div>

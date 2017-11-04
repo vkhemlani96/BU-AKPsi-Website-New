@@ -1,0 +1,115 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="title_section vertical_padding col-md-12">
+			<h1>Rush Alpha Kappa Psi</h1>
+			<div class="seperator"></div>
+			<h2>Unlock Your Passion</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2" style="padding-top: 35px">
+			<p>Recruitment (also known as Rush) is a process held at the beginning of each semester, during which the Fraternity holds info sessions and other events to welcome potential members. The purpose of recruitment is to allow potential members to learn about the Fraternity, network with current Brothers and determine if Alpha Kappa Psi is a good fit for them. In order to be considered for admission to the Fraternity, recruits must attend at least one event (but it is recommended that recruits attend one info session, and one other open recruitment event) and submit the Recruitment Application (which will be posted at a future time). For more information about the recruitment process, visit our <a href="/faq.php">FAQ page</a>.
+			</p>
+		</div>
+		
+		<div class="row vertical_padding">
+			<div class="col-md-4 col-md-offset-2">
+				<a href="signup.php?source={% if from_facebook %}fb{% else %}web{% endif %}" style="text-decoration: none"><p class="button text-center">Sign up for Recruitment!</p></a>
+			</div>
+			<div class="col-md-4">
+				<a href="application.php" style="text-decoration: none"><p class="button text-center">Fill out our Application!</p></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="">
+
+		<div class="row">
+			<div class="col-md-12" style="padding-right: 0; padding-left: 0">
+				<div id="map-canvas" style="height: 400px; width: 100%;"></div>
+			</div>
+		</div>
+		<div class="row vertical_padding" style="padding-bottom: 0">
+			<div class="col-md-12">
+				<h2><strong>Recruitment Events</strong></h2>
+				<div class="seperator"></div>
+			</div>
+		</div>
+
+		<div class="vertical_padding">
+			<div class="row">
+				<div class="col-md-5 col-md-offset-1">
+					<h2><strong>{{events.0.name}}</strong> {{events.0.start_time|date:"D, N d"}}</h2>
+					<h4>
+					{{events.0.location}} | {{events.0.start_time|date:"f"}}-{{events.0.end_time|date:"f A"}}</h4>
+				</div>
+				<div class="col-md-5">
+					<h2><strong>{{events.1.name}}</strong> {{events.1.start_time|date:"D, N d"}}</h2>
+					<h4>
+					{{events.1.location}} | {{events.1.start_time|date:"f"}}-{{events.1.end_time|date:"f A"}}</h4>
+				</div>
+			</div>
+			<div class="row" style="margin-top:20px;">
+				<p class="col-md-10 col-md-offset-1">{{events.0.description|safe}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="table_seperator"></div>
+			</div>
+		</div>
+
+		<div class="row vertical_padding">
+			{% for event in events|slice:"2:" %}
+			<div class="col-md-5{% cycle ' col-md-offset-1' '' %}">
+				<h2><strong>{{event.name}}</strong> {{event.start_time|date:"D, N d"}}</h2>
+				<h4>{{event.location}} | {{event.start_time|date:"f"}}-{{event.end_time|date:"f A"}}</h4>
+				<p style="margin-top: 20px;">{{event.description|safe}}</p>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</div>
+
+<script>
+function initMap() {
+
+	var map = new google.maps.Map(document.getElementById('map-canvas'), {
+		zoom: 16,
+		center: new google.maps.LatLng({{center.lat}}, {{center.lng}}),
+		scrollwheel: false,
+	});
+	var markers = [];
+	var marker = null;
+	var infoWindow = null;
+
+	{% for building, text in markers.items %}
+	marker = new google.maps.Marker({
+		position: new google.maps.LatLng({{building.lat}}, {{building.lng}}),
+		map: map,
+		title: ''
+	});
+	markers.push(marker);
+
+	infoWindow = new google.maps.InfoWindow({
+		content: "<div class='text-center'>{{text|safe}}</div>",
+	});
+
+	infoWindow.open(map,marker);
+	{% endfor %}
+
+	google.maps.event.addListener(map, 'bounds_changed', function() {
+		for (var i = 0; i < markers.length; i++) {
+			marker = markers[i];
+			while (!map.getBounds().contains(marker.getPosition())) {
+				map.setZoom(map.getZoom()-1);
+			}
+		}
+	});
+
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEnbgfKOq6iHuFxK6ItBcS9Yn4_KF5sJo&callback=initMap"
+async defer></script>

@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+		<title>{{article.title}} | Alpha Kappa Psi Nu Chapter</title>
+
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<script src="{% static 'js/jquery.color.js' %}"></script>
+		<link 	href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+		<link 	href="{% static 'css/navbar.css' %}" rel="stylesheet" />
+		<link 	href="{% static 'css/eye2eye_override.css' %}" rel="stylesheet" />
+
+		<meta property="og:url" content="{{url}}">
+		<meta property="og:title" content="{{article.title}}">
+		<meta property="og:image" content="http://buakpsi.com/static/eye2eye/eye2eye_og_image.png">
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="300" />
+		<meta property="og:image:height" content="170" />
+		<meta property="og:site_name" content="Eye2Eye | Alpha Kappa Psi Nu Chapter">
+		{# <meta property="og:description" content="{{article.preview|safe}}"> #}
+
+	</head>
+
+	<body>
+
+		<div id="fb-root"></div>
+
+		<img style="display:none" src="{% static 'eye2eye/eye2eye_og_image.png' %}" />
+		
+		{{ navbar }}
+
+		<div class="share_button_container">
+			<a class="share_button"
+			   href="https://www.facebook.com/sharer/sharer.php?sdk=joey&u={{url}}&display=popup&ref=plugin&src=share_button" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+				<img src="{% static 'img/social_media/facebook_white.png' %}" height="20">
+			</a>
+			<br>
+			<a class="share_button"
+			   href="http://www.twitter.com/intent/tweet?url={{url}}&text={{article.title}}" 
+			   onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+				<img src="{% static 'img/social_media/twitter_white.png' %}" height="20">
+			</a>
+			<br>
+			<a class="share_button"
+			   href="http://www.linkedin.com/shareArticle?mini=true&url={{url}}&title={{article.title}}&source=buakpsi.com"
+			   onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+				<img src="{% static 'img/social_media/linkedin_white.png' %}" height="20">
+			</a>
+			<br>
+			<a class="share_button"
+			   href="mailto:?subject=Check out Eye2Eye's Blog Post: {{article.title}}&body={{article}}: {{url}}">
+				<img src="{% static 'img/social_media/email_white.png' %}" height="20">
+			</a>
+
+		</div>
+
+
+		<div class="vertical_padding center title_section blog_header">
+			<h1>{{article.title}}</h1>
+			<h4>
+				<!-- <a href="../research.php#{{author.last_name|lower}}"> -->
+					{{article.author.first_name}} {{article.author.last_name}}
+				<!-- </a> -->
+					&nbsp; | {{article.created_at}}</h4>
+			<div class="table_seperator"></div>
+		</div>
+		<div class="vertical_padding center blog_body">
+
+			{{article.body|safe}}
+
+		</div>
+		<div class="blog_footer vertical_padding center">
+			<div class="table_seperator"></div>
+
+			{% for note in article.footnote_array %}
+				<p><sup>{{forloop.counter0|add:1}}</sup> {{note}} </p>
+			{% endfor %}
+		</div>
+
+		<script>
+			$(".share_button_container").css("top", ($(".blog_body").offset().top + 40) + "px");
+		</script>
+	</body>
+
+</html>
