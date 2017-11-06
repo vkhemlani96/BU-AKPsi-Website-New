@@ -11,7 +11,7 @@
 		{% for partner in partners %}
 					<tr>
 						<td class="nccg_advisor_image_cell">
-							<img src="../img/nccg/{{partner.first_name|lower}}_{{partner.last_name|lower}}_thumb.png">
+							<img src="{% static 'nccg/img/{{partner.last_name|lower}}_{{partner.first_name|lower}}_thumb.png' %}">
 						</td>
 						<td class="nccg_advisor_bio_cell">
 							<h2 class="nccg_name"><strong>{{partner.first_name}} {{partner.last_name}}</strong></h2>
