@@ -23,3 +23,29 @@ class NCCGMember(models.Model):
     class Meta:
         verbose_name = "Member"
         verbose_name_plural = "Members"
+
+    def name(self):
+        return "%s %s" % (self.brother.first_name, self.brother.last_name)
+
+class NCCGAdvisor(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    title = models.CharField(max_length=300)
+    bio = models.TextField()
+
+    def name(self):
+        return "%s %s" % (self.first_name, self.last_name)
+
+class NCCGPartner(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    title = models.CharField(max_length=300)
+    bio = models.TextField()
+    linkedin = models.CharField(max_length=300)
+
+    def name(self):
+        return "%s %s" % (self.first_name, self.last_name)
+
+class NCCGClient(models.Model):
+    company_name = models.CharField(max_length=40)
+    description = models.TextField()

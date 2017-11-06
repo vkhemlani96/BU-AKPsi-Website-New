@@ -80,4 +80,4 @@ def contact(request):
 		'post_body_script': render_to_string('buakpsi/contact.js'),
 		'head': render_to_string('buakpsi/contact_head.html'),
 	}
-	return render_page(request, context, navbar_size='large')
+	return render_page(request, context)

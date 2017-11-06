@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^contact/', views.contact),
     url(r'^eye2eye/', include('eye2eye.urls')),
     url(r'^faq/', views.faq),
+    url(r'^nccg/', include('nccg.urls')),
     url(r'^rush\/*', include('rush.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
