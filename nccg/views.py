@@ -1,4 +1,4 @@
-from nccg.models import NCCGMember
+from nccg.models import NCCGMember, NCCGAdvisor, NCCGPartner, NCCGClient
 from buakpsi.views import render_page
 from django.template.loader import render_to_string
 from django.shortcuts import render
