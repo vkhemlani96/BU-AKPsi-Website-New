@@ -33,6 +33,10 @@ class NCCGAdvisor(models.Model):
     title = models.CharField(max_length=300)
     bio = models.TextField()
 
+    class Meta:
+        verbose_name = "Advisor"
+        verbose_name_plural = "Advisors"
+
     def name(self):
         return "%s %s" % (self.first_name, self.last_name)
 
