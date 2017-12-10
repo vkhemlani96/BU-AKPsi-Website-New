@@ -34,8 +34,8 @@ class NCCGAdvisor(models.Model):
     bio = models.TextField()
 
     class Meta:
-        verbose_name = "Advisor"
-        verbose_name_plural = "Advisors"
+        verbose_name = "advisor"
+        verbose_name_plural = "advisors"
 
     def name(self):
         return "%s %s" % (self.first_name, self.last_name)
@@ -52,4 +52,8 @@ class NCCGPartner(models.Model):
 
 class NCCGClient(models.Model):
     company_name = models.CharField(max_length=40)
+    semester = models.CharField(max_length=100)
     description = models.TextField()
+
+    def name(self):
+        return "%s %s" % (self.first_name, self.last_name)
