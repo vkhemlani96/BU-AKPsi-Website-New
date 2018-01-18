@@ -2,8 +2,8 @@ SEMESTER = "S18"
 
 SIGNUP_SOURCES = [
 	"SPLASH",
-	"Questrom",
+	"Questrom Tabling",
 	"Facebook",
 	"Website",
-	"GSU"
+	"GSU Tabling"
 ]
