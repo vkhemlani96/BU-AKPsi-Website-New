@@ -78,7 +78,7 @@ class RushProfile(models.Model):
 
 	first_name = models.CharField(max_length=20)
 	last_name = models.CharField(max_length=20)
-	email = models.CharField(max_length=8, blank=True, null=True)
+	email = models.CharField(max_length=8)
 	semester = models.CharField(max_length=3)
 	phone_number = models.CharField(max_length=11)
 	grade = models.CharField(
@@ -87,20 +87,19 @@ class RushProfile(models.Model):
 
 	major_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
 	majors = models.CharField(max_length=100)
-	minor_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
-	minors = models.CharField(max_length=100)
+	minors = models.CharField(max_length=100, blank = True, null = True)
 	
-	events_attended = fields.ArrayField(models.CharField(max_length=50))
-	submitted_application = models.BooleanField()
-	interview_wave = models.PositiveSmallIntegerField()
-	interview_prelim_yes = models.PositiveSmallIntegerField()
-	interview_prelim_no = models.PositiveSmallIntegerField()
-	interview_prelim_abstain = models.PositiveSmallIntegerField()
-	interview_prelim_deliberate = models.BooleanField()
-	interview_final_yes = models.PositiveSmallIntegerField()
-	interview_final_no = models.PositiveSmallIntegerField()
-	interview_final_abstain = models.PositiveSmallIntegerField()
-	given_bid = models.BooleanField()
+	events_attended = fields.ArrayField(models.CharField(max_length=50), default = list)
+	submitted_application = models.BooleanField(default = False)
+	interview_wave = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_yes = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_no = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_abstain = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_deliberate = models.NullBooleanField(null = True)
+	interview_final_yes = models.PositiveSmallIntegerField(null = True)
+	interview_final_no = models.PositiveSmallIntegerField(null = True)
+	interview_final_abstain = models.PositiveSmallIntegerField(null = True)
+	given_bid = models.NullBooleanField(null = True)
 
 class RushApplication(models.Model):
 	profile = models.OneToOneField(RushProfile, on_delete=models.CASCADE, related_name='application')
