@@ -81,10 +81,15 @@ class RushProfile(models.Model):
 	email = models.CharField(max_length=8, blank=True, null=True)
 	semester = models.CharField(max_length=3)
 	phone_number = models.CharField(max_length=11)
-	major_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
 	grade = models.CharField(
 		max_length=2, choices=((FRESHMAN, "Freshman"), (SOPHOMORE, "Sophomore"), (JUNIOR, "Junior"), (SENIOR, "Senior")))
 	channel = models.CharField(max_length=30)
+
+	major_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
+	majors = models.CharField(max_length=100)
+	minor_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
+	minors = models.CharField(max_length=100)
+	
 	events_attended = fields.ArrayField(models.CharField(max_length=50))
 	submitted_application = models.BooleanField()
 	interview_wave = models.PositiveSmallIntegerField()
