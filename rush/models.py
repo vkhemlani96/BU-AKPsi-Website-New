@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres import fields
 
 class RushEventLocation(models.Model):
 	name = models.CharField(max_length=50)
@@ -68,3 +69,41 @@ class RushEvent(models.Model):
 			location += " (" + self.room_long_name + ")"
 
 		return location
+
+class RushProfile(models.Model):
+	FRESHMAN = "FR"
+	SOPHOMORE = "SO"
+	JUNIOR = "JR"
+	SENIOR = "SR"
+
+	first_name = models.CharField(max_length=20)
+	last_name = models.CharField(max_length=20)
+	email = models.CharField(max_length=8)
+	semester = models.CharField(max_length=3)
+	phone_number = models.CharField(max_length=11)
+	grade = models.CharField(
+		max_length=2, choices=((FRESHMAN, "Freshman"), (SOPHOMORE, "Sophomore"), (JUNIOR, "Junior"), (SENIOR, "Senior")))
+	channel = models.CharField(max_length=30)
+
+	major_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
+	majors = models.CharField(max_length=100)
+	minors = models.CharField(max_length=100, blank = True, null = True)
+	
+	events_attended = fields.ArrayField(models.CharField(max_length=50), default = list)
+	submitted_application = models.BooleanField(default = False)
+	interview_wave = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_yes = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_no = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_abstain = models.PositiveSmallIntegerField(null = True)
+	interview_prelim_deliberate = models.NullBooleanField(null = True)
+	interview_final_yes = models.PositiveSmallIntegerField(null = True)
+	interview_final_no = models.PositiveSmallIntegerField(null = True)
+	interview_final_abstain = models.PositiveSmallIntegerField(null = True)
+	given_bid = models.NullBooleanField(null = True)
+
+class RushApplication(models.Model):
+	profile = models.OneToOneField(RushProfile, on_delete=models.CASCADE, related_name='application')
+	timestamp = models.DateTimeField(auto_now_add=True)
+	address = models.CharField(max_length=15)
+	gpa = models.CharField(max_length=5)
+	application_answers = fields.ArrayField(models.TextField())

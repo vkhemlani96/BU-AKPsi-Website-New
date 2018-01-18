@@ -7,7 +7,7 @@ from buakpsi.models import FAQ
 from brothers.models import EBoardMember
 
 def render_page(request, context, navbar_size = 'small'):
-	context['navbar'] = navbar(navbar_size)
+	context['navbar'] = navbar(navbar_size == 'small')
 	return render(request, 'buakpsi/wrapper.html', context)
 
 def navbar(small):

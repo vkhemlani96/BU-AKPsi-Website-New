@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.utils.html import format_html
 from django.template.loader import render_to_string
 from buakpsi.views import render_page
-from rush.models import RushEventLocation, RushEvent
+from rush.models import RushEventLocation, RushEvent, RushProfile
+from rush.settings import SIGNUP_SOURCES, SEMESTER
 
 def index(request):
 
@@ -47,6 +49,62 @@ def index(request):
 	context = {
 		"head": render_to_string("rush/index_head.html"),
 		"body": render_to_string("rush/index.html", body_context),
-		# "post_body_script": render_to_string("rush/index.js"),
 	}
 	return render_page(request, context)
+
+def signup(request, src):
+	if not src:
+		text = ""
+		for source in SIGNUP_SOURCES:
+			text += '<p><a href="./%s">%s</a></p>' % (source, source)
+
+		context = {
+			"body": format_html(text),
+		}
+
+		return render_page(request, context)
+
+	else:
+		if request.method == "GET":
+			context = {
+				"body": render_to_string('rush/signup.html', {"title": src}, request=request),
+				"post_body_script": render_to_string('rush/signup.js')
+			}
+
+			return render_page(request, context)
+
+		elif request.method == "POST":
+
+			data = request.POST
+			print(data)
+			for key in data.keys():
+				print(key, data.getlist(key))
+			rush = RushProfile(
+				first_name = data.get('rushFirstName'),
+				last_name = data.get('rushLastName'),
+				email = data.get('rushEmail').replace("@bu.edu",""),
+				semester = SEMESTER,
+				phone_number = data.get('rushPhone'),
+				grade = data.get('rushGrade'),
+				channel = src,
+
+				major_schools = data.getlist('rushSchool[]'),
+				majors = data.get('rushMajors'),
+				minors = data.get('rushMinors')
+			)
+
+			success_error_msg = "%s has successfully been signed up" % (data.get('rushFirstName'),)
+			try:
+				rush.save()
+			except Exception:
+				success_error_msg = "An error has occurred. Please try again."
+
+			body_context = {
+				'title': src,
+				'success_error_msg': success_error_msg
+			}
+			context = {
+				"body": render_to_string('rush/signup.html', body_context, request=request),
+				"post_body_script": render_to_string('rush/signup.js')
+			}
+			return render_page(request, context)
