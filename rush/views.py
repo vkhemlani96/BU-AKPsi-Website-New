@@ -34,10 +34,18 @@ def index(request):
 			window_text.append(room)
 		markers[building] = "<br>".join(window_text)
 
-	center = {
-		'lat': sum([building.lat for building in buildings]) / buildings.count(),
-		'lng': sum([building.lng for building in buildings]) / buildings.count(),
-	}
+	center = {}
+	if len(events):
+		center = {
+			'lat': sum([building.lat for building in buildings]) / buildings.count(),
+			'lng': sum([building.lng for building in buildings]) / buildings.count(),
+		}
+	else:
+		center = {
+			'lat': 42.350500,
+			'lng': -71.105399
+		}
+
 
 	body_context = {
 		"markers": markers,
