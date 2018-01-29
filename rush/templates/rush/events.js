@@ -49,7 +49,7 @@ var rushInfo;
 		'Phone': "{{rush.phone_number}}",
 		'Majors': "{{rush.majors}}",
 		'Minors': "{{rush.minors}}",
-		'MajorSchools': eval(replaceAll("{{rush.major_schools}}","&#39;", "'")),
+		'MajorSchools': eval(replaceAll("{{rush.major_schools}}","u?&#39;", "'")),
 		'Grade': "{{rush.grade}}"
 	};
 	Rushes["{{rush.email|lower}}@bu.edu"] = rushInfo;
