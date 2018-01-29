@@ -176,7 +176,7 @@ def event(request, name):
 			}
 			context = {
 				"body": render_to_string('rush/events.html', body_context, request=request),
-				"post_body_script": render_to_string('rush/event.js', {"rushes": rushes})
+				"post_body_script": render_to_string('rush/events.js', {"rushes": rushes})
 			}
 			return render_page(request, context)
 
