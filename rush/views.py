@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from django.template.loader import render_to_string
 from buakpsi.views import render_page
 from rush.models import RushEventLocation, RushEvent, RushProfile
-from rush.settings import SIGNUP_SOURCES, SEMESTER
+from rush.settings import SIGNUP_SOURCES, SEMESTER, DATA_PASSWORD
 
 def index(request):
 
@@ -84,9 +84,6 @@ def signup(request, src):
 		elif request.method == "POST":
 
 			data = request.POST
-			print(data)
-			for key in data.keys():
-				print(key, data.getlist(key))
 			rush = RushProfile(
 				first_name = data.get('rushFirstName'),
 				last_name = data.get('rushLastName'),
@@ -116,3 +113,87 @@ def signup(request, src):
 				"post_body_script": render_to_string('rush/signup.js')
 			}
 			return render_page(request, context)
+
+def event(request, name):
+	if not name:
+		text = ""
+		events = RushEvent.objects.all().values_list('name', flat=True)
+		for name in events:
+			text += '<p><a href="./%s">%s</a></p>' % (name, name)
+
+		context = {
+			"body": format_html(text),
+		}
+
+		return render_page(request, context)
+
+	else:
+		rushes = RushProfile.objects.filter(semester=SEMESTER)
+		if request.method == "GET":
+			context = {
+				"body": render_to_string('rush/events.html', {"title": name}, request=request),
+				"post_body_script": render_to_string('rush/events.js', {"rushes": rushes})
+			}
+
+			return render_page(request, context)
+
+		elif request.method == "POST":
+
+			data = request.POST
+			email = data.get('rushEmail').replace("@bu.edu","")
+			rush = None
+			matchingRushes = RushProfile.objects.filter(email = email)
+
+			if matchingRushes.count() > 0:
+				rush = matchingRushes[0]
+				rush.channel = 'event'
+			else:
+				rush = RushProfile()
+
+			rush.first_name = data.get('rushFirstName')
+			rush.last_name = data.get('rushLastName')
+			rush.email = email
+			rush.semester = SEMESTER
+			rush.phone_number = data.get('rushPhone')
+			rush.grade = data.get('rushGrade')
+			rush.major_schools = data.getlist('rushSchool[]')
+			rush.majors = data.get('rushMajors')
+			rush.minors = data.get('rushMinors')
+			if not name in rush.events_attended:
+				rush.events_attended.append(name)
+
+			rush.save()
+
+			success_error_msg = "%s %s - Saved Successfully" % (data.get('rushFirstName'),data.get('rushLastName'))
+			try:
+				rush.save()
+			except Exception:
+				success_error_msg = "An error has occurred. Please try again."
+
+			body_context = {
+				'title': name,
+				'success_error_msg': success_error_msg
+			}
+			context = {
+				"body": render_to_string('rush/events.html', body_context, request=request),
+				"post_body_script": render_to_string('rush/event.js', {"rushes": rushes})
+			}
+			return render_page(request, context)
+
+def data(request):
+	if request.POST.get("password") != DATA_PASSWORD:
+		body_context = {
+			"incorrect_password": (request.POST.get("password") != None)
+		}
+		context = {
+			"body": render_to_string('rush/data.html', body_context, request=request)
+		}
+		return render_page(request, context)
+
+	rushes = RushProfile.objects.all()
+	
+
+	context = {
+		"body": render_to_string('rush/data.html', request=request)
+	}
+	return render_page(request, context)

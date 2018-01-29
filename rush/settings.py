@@ -7,3 +7,5 @@ SIGNUP_SOURCES = [
 	"Website",
 	"GSU Tabling"
 ]
+
+DATA_PASSWORD = "Broh00d"
