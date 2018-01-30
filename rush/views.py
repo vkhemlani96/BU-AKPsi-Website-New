@@ -1,9 +1,11 @@
+import csv
 from django.shortcuts import render
 from django.utils.html import format_html
 from django.template.loader import render_to_string
+from django.http import HttpResponse
 from buakpsi.views import render_page
 from rush.models import RushEventLocation, RushEvent, RushProfile
-from rush.settings import SIGNUP_SOURCES, SEMESTER, DATA_PASSWORD
+from rush.settings import SIGNUP_SOURCES, SEMESTER, DATA_PASSWORD, EXPORT_PASSWORD
 
 def index(request):
 
@@ -179,6 +181,42 @@ def event(request, name):
 				"post_body_script": render_to_string('rush/events.js', {"rushes": rushes})
 			}
 			return render_page(request, context)
+
+fields = (
+	('First Name', 'first_name'),
+	('Last Name', 'last_name'),
+	('Email', 'email'),
+	('Grade', 'grade'),
+	('Channel', 'channel'),
+	('Schools', 'major_schools'),
+	('Majors', 'majors'),
+	('Minors', 'minors'),
+	('Events', 'events_attended'),
+)
+
+def export(request):
+	if request.POST.get("password") != EXPORT_PASSWORD:
+		body_context = {
+			"incorrect_password": (request.POST.get("password") != None)
+		}
+		context = {
+			"body": render_to_string('rush/data.html', body_context, request=request)
+		}
+		return render_page(request, context)
+
+
+	response = HttpResponse(content_type='text/csv')
+	response['Content-Disposition'] = 'attachment; filename="rushes_%s.csv"' % SEMESTER
+
+	writer = csv.writer(response)
+	writer.writerow([x[0] for x in fields])
+
+	rushes = RushProfile.objects.filter(semester = SEMESTER).values_list(*[x[1] for x in fields])
+
+	for rush in rushes:
+		writer.writerow([str(x) for x in rush])
+
+	return response
 
 def data(request):
 	if request.POST.get("password") != DATA_PASSWORD:

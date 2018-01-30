@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^signup/(?P<src>.*)$', views.signup),
     url(r'^event/(?P<name>.*)$', views.event),
     url(r'^data', views.data),
+    url(r'^export', views.export),
 
 ]
