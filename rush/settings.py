@@ -9,3 +9,4 @@ SIGNUP_SOURCES = [
 ]
 
 DATA_PASSWORD = "Broh00d"
+EXPORT_PASSWORD = "Broh00dExport"
