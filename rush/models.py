@@ -85,7 +85,7 @@ class RushProfile(models.Model):
 		max_length=2, choices=((FRESHMAN, "Freshman"), (SOPHOMORE, "Sophomore"), (JUNIOR, "Junior"), (SENIOR, "Senior")))
 	channel = models.CharField(max_length=30)
 
-	major_schools = fields.ArrayField(models.CharField(max_length=3)) # max_length => CAS,ENG,QST
+	major_schools = fields.ArrayField(models.CharField(max_length=6)) # max_length => CAS,ENG,QST,Pardee
 	majors = models.CharField(max_length=100)
 	minors = models.CharField(max_length=100, blank = True, null = True)
 	
