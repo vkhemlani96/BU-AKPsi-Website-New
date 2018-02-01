@@ -4,139 +4,205 @@
 	<h2></h2>
 </div>
 
-<div class="center">
-	<div id="description">
-		<p class="vertical_padding center description" style="text-align: center">
-			Thank you for considering applying to join Alpha Kappa Psi Nu Chapter! This year, our application process consists of both, a written portion and a logical examination. Please be as specific as possible and complete the examination in one sitting with <i>absolute integrity</i>. The application can only be started once and should take no longer than 30 minutes.<br><br> <i>Note: The written portion is untimed. However, the logic examination has a 10-minute time limit and can only be completed once.</i>
-		</p>
+<div class="center rushForm">
+	<p class="vertical_padding center description" style="text-align: center">
+		Thank you for considering applying to join Alpha Kappa Psi Nu Chapter! This year, our application process consists of both, a written portion and a logical examination. Please be as specific as possible and complete the examination in one sitting with <i>absolute integrity</i>.
+	</p>
+	
+	<form id="rushForm" method="post" action="/rush/application/submit" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="admin" style="text-align:center; width: 60%; margin: 0 auto;">
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushEmail" name="rushEmail"/>
+				<label class="mdl-textfield__label" for="sample1">E-Mail (@bu.edu)</label>
+			</div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushFirstName" name="rushFirstName" />
+				<label class="mdl-textfield__label" for="sample1">First Name</label>
+			</div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushLastName" name="rushLastName" />
+				<label class="mdl-textfield__label" for="sample1">Last Name</label>
+			</div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushPhone" name="rushPhone"/>
+				<label class="mdl-textfield__label" for="sample1">Phone Number</label>
+			</div>
+			<!--
+	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+	<input class="mdl-textfield__input" type="text" id="rushGrade" name="rushGrade"/>
+	<label class="mdl-textfield__label" for="sample1">Grade (eg. Freshman, Sophomore)</label>
+	</div>
+	-->
+
+			<table class="rush_grade">
+				<tr>
+					<td><p>Grade:</p></td>
+					<td>
+						<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-freshman">
+							<input type="radio" id="option-freshman" class="mdl-radio__button" name="rushGrade" value="FR">
+							<span class="mdl-radio__label">Freshman</span>
+						</label>
+						<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-sophomore">
+							<input type="radio" id="option-sophomore" class="mdl-radio__button" name="rushGrade" value="SO">
+							<span class="mdl-radio__label">Sophomore</span>
+						</label>
+						<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-junior">
+							<input type="radio" id="option-junior" class="mdl-radio__button" name="rushGrade" value="JR">
+							<span class="mdl-radio__label">Junior</span>
+						</label>
+						<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-senior">
+							<input type="radio" id="option-senior" class="mdl-radio__button" name="rushGrade" value="SR">
+							<span class="mdl-radio__label">Senior</span>
+						</label>
+					</td>
+				</tr>
+			</table>
+
+			<table class="rush_schools">
+				<tr>
+					<td rowspan="2"><p>School(s):</p></td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-qst">
+							<input type="checkbox" id="checkbox-qst" name="rushSchool[]" value="QST" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">QST</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-cas">
+							<input type="checkbox" id="checkbox-cas" name="rushSchool[]" value="CAS" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">CAS</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sha">
+							<input type="checkbox" id="checkbox-sha" name="rushSchool[]" value="SHA" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">SHA</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-com">
+							<input type="checkbox" id="checkbox-com" name="rushSchool[]" value="COM" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">COM</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-eng">
+							<input type="checkbox" id="checkbox-eng" name="rushSchool[]" value="ENG" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">ENG</span>
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-cfa">
+							<input type="checkbox" id="checkbox-cfa" name="rushSchool[]" value="CFA" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">CFA</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-cgs">
+							<input type="checkbox" id="checkbox-cgs" name="rushSchool[]" value="CGS" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">CGS</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sar">
+							<input type="checkbox" id="checkbox-sar" name="rushSchool[]" value="SAR" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">SAR</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-pardee">
+							<input type="checkbox" id="checkbox-pardee" name="rushSchool[]" value="Pardee" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">Pardee</span>
+						</label>
+					</td>
+					<td>
+						<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-sed">
+							<input type="checkbox" id="checkbox-sed" name="rushSchool[]" value="SED" class="mdl-checkbox__input" >
+							<span class="mdl-checkbox__label">SED</span>
+						</label>
+					</td>
+				</tr>
+			</table>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushMajors" name="rushMajors"/>
+				<label class="mdl-textfield__label" for="sample1">Major(s) / Concentration(s)</label>
+			</div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushMinors" name="rushMinors"/>
+				<label class="mdl-textfield__label" for="sample1">Minors(s) (Optional)</label>
+			</div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" type="text" id="rushAddress" name="rushAddress"/>
+				<label class="mdl-textfield__label" for="sample1">Address (Building &amp; Room)</label>
+			</div>
+			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+				<input class="mdl-textfield__input" pattern="\d+(\.\d*)?" id="rushGPA" name="rushGPA"/>
+				<label class="mdl-textfield__label" for="sample1"style="overflow:initial">Cummulative College GPA (HS GPA for freshman)</label>
+			</div>
+
+			<div class="pic">
+				<p>Please attach a photo of yourself: </p>
+				<input type="file" id="rushPic" name="rushPic" style="display:inline-block; width: 66%"/>
+			</div>
+
+			<div class="pic">
+				<p>Please attach your resume: </p>
+				<input type="file" id="rushResume" name="rushResume" style="display:inline-block; width: 66%"/>
+			</div>
+		</div>
 
 		<div class="table_seperator" style="width: 66%"></div>
-	</div>
-	
-	
-	<form style="margin: 0 auto;" action="application_post.php" id="rushForm" method="post" enctype="multipart/form-data">
-	
-		<div id="application_start">
-		
-			<div class="vertical_padding">
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushEmail" name="rushEmail"/>
-					<label class="mdl-textfield__label" for="sample1">E-Mail (MUST USE @bu.edu)</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushFirstName" name="rushFirstName" />
-					<label class="mdl-textfield__label" for="sample1">First Name</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushLastName" name="rushLastName" />
-					<label class="mdl-textfield__label" for="sample1">Last Name</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushGrade" name="rushGrade"/>
-					<label class="mdl-textfield__label" for="sample1">Grade (eg. Freshman, Sophomore)</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushSchool" name="rushSchool"/>
-					<label class="mdl-textfield__label" for="sample1">School(s) (eg. QUESTROM, ENG)</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushMajors" name="rushMajors"/>
-					<label class="mdl-textfield__label" for="sample1">Major(s) / Concentration(s)</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushMinors" name="rushMinors"/>
-					<label class="mdl-textfield__label" for="sample1">Minors(s) (Optional)</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushPhone" name="rushPhone"/>
-					<label class="mdl-textfield__label" for="sample1">Phone Number</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" type="text" id="rushAddress" name="rushAddress"/>
-					<label class="mdl-textfield__label" for="sample1">Address (Building &amp; Room)</label>
-				</div>
-				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-					<input class="mdl-textfield__input" pattern="\d+(\.\d*)?" id="rushGPA" name="rushGPA"/>
-					<label class="mdl-textfield__label" for="sample1"style="overflow:initial">Cummulative College GPA (HS GPA for freshman)</label>
-				</div>
-				<div class="pic">
-					<p class="">Please attach a photo of yourself: </p>
-					<input type="file" id="rushPic" name="rushPic" style="display:inline-block; width: 66%"/>
-				</div>
-			</div>
 
-			<div style="text-align:center; margin-bottom: 35px;">
-				<button class="button" type="button" onclick="moveToNextPart()" id="beginApp">Begin Written Application</button>
-			</div>
-			
+		<div class="vertical_padding">
+			{% for question in questions.short_answer %}
+				<p><strong>{{question.question|safe}}</strong></p>
+				<textarea name="short_answer_{{forloop.counter}}" {% if not question.required %} class="notRequired" {%endif%}></textarea>
+			{% endfor %}
 		</div>
-		
-		<div id="application_written" class="hidden">
-			
-			<div class="table_seperator" style="width: 66%"></div>
+		<div class="table_seperator" style="width: 66%"></div>
 
-			<div class="vertical_padding">
-				{% for question in questions.short_answer %}
-					<p><strong>{{question.question|safe}}</strong></p>
-					<textarea name="q{{forloop.counter}}" {% if not question.required %} class="notRequired" {%endif%}></textarea>
-				{% endfor %}
-			</div>
+		<div class="vertical_padding">
 
-			<div class="table_seperator" style="width: 66%"></div>
+			{% for question in questions.logic %}
 
-			<div class="vertical_padding">
-				<p style="color: black; text-align:center"><i><strong>The following questions are optional and will have no affect on your candidacy.</strong></i></p>
-				<br><br>
-				{% for question in questions.feedback %}
-					<p><strong>{{question.question|safe}}</strong></p>
-					<textarea name="fb{{forloop.counter}}" class="notRequired"></textarea>
-				{% endfor %}
-			</div>
+				{% if question.image %}
+					<img src="{{question.image}}" />
+				{% endif %}
 
-			<div style="text-align:center; margin-bottom: 35px;">
-				<button class="button" type="button" onclick="moveToNextPart()">Begin Logic Exam</button>
-			</div>
-
-			
-		</div>
-		
-		<div id="application_logic" class="hidden">
-		
-			<div id="countdownClock">
-				<p>Time Left: 10:00</p>
-			</div>
-			
-			<div class="vertical_padding">
-				{% for question in questions.logic %}
-
-					{% if question.image %}
-						<img src="{{question.image}}" />
+				<p style="color:black"><strong>{{question.question|safe}}</strong></p>
+				<div>
+					{% if question.input_type == "multiple_choice" %}
+						{% for option in question.options %}
+							<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{option}}">
+								<input type="radio" id="option-{{option}}" class="mdl-radio__button" name="l{{forloop.counter}}" value="{{option}}">
+								<span class="mdl-radio__label">{{option}}</span>
+							</label>
+							</br>
+						{% endfor %}
+					{% else %}
+					<input type="{{question.input_type}}" id="logic_{{forloop.counter}}" name="logic_{{forloop.counter}}" style="margin-bottom:20px"/>
 					{% endif %}
+				</div>
+			{% endfor %}
 
-					<p style="color:black"><strong>{{question.question|safe}}</strong></p>
-					<div>
-						{% if question.input_type == "multiple_choice" %}
-							{% for option in question.options %}
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{option}}">
-									<input type="radio" id="option-{{option}}" class="mdl-radio__button" name="l{{forloop.counter}}" value="{{option}}">
-									<span class="mdl-radio__label">{{option}}</span>
-								</label>
-								</br>
-							{% endfor %}
-						{% else %}
-						<input type="{{question.inputType}}" id="l{{forloop.counter}}" name="l{{forloop.counter}}"/>
-						{% endif %}
-					</div>
-					<div class="table_seperator" style="width: 66%"></div>
-				{% endfor %}
-				<input type="hidden" name="time">
-			</div>
+		</div>
 
-			<div style="text-align:center; margin-bottom: 35px;">
-				<button class="button" type="button" onclick="moveToNextPart()">Submit Exam</button>
-			</div>
+		<div class="table_seperator" style="width: 66%"></div>
 
-			
+		<div class="vertical_padding">
+			<p style="color: black; text-align:center"><i><strong>The following questions are optional and will have no affect on your candidacy.</strong></i></p>
+			<br><br>
+			{% for question in questions.feedback %}
+				<p><strong>{{question.question|safe}}</strong></p>
+				<textarea name="feedback_{{forloop.counter}}" class="notRequired"></textarea>
+			{% endfor %}
+		</div>
+
+		<div style="text-align:center; margin-bottom: 35px;">
+			<button class="button" type="button" onclick="moveToNextPart()">Submit Exam</button>
 		</div>
 
 	

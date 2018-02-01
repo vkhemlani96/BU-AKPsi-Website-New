@@ -3,92 +3,31 @@ var totalTime = 10 * 60;
 var timeLeft = totalTime;
 var interval = null;
 function moveToNextPart() {
-	if (appIndex == 0) {
-		
-		if (checkBasicDetails()) {
+	if (!checkBasicDetails()) {
+		if( document.getElementById("rushPic").files.length == 0 ){
+			alert("Please include a picture of yourself with your application.");
+			return;
+		}
+		if( document.getElementById("rushResume").files.length == 0 ){
+			alert("Please include your resume with your application.");
+			return;
+		}
+		alert("Please fill all required fields/fix invalid fields.");
+		return;
 
-			if ($("#rushEmail").val().trim().indexOf("@bu.edu", this.length - "@bu.edu".length) == -1 || $("#rushEmail").val().length > 15) {
-				alert("Please use your BU email");
-				return;
-			}
-			
-			appIndex = 1;
-			$("#description").addClass("hidden")
-			$("#application_start").addClass("hidden")
-			$("#application_written").removeClass("hidden")
-			window.scrollTo(0,0);
-			
-			if (!($("#rushEmail").val().toLowerCase() in Rushes)) {
-				$.ajax({
-					type: "POST",
-					url: "signup.php",
-					data: {
-						rushFirstName: $("#rushFirstName").val(),
-						rushLastName: $("#rushLastName").val(),
-						rushEmail: $("#rushEmail").val(),
-						rushPhone: $("#rushPhone").val(),
-						rushMajors: $("#rushMajors").val(),
-						rushMinors: $("#rushMinors").val(),
-						rushSchool: $("#rushSchool").val(),
-						rushGrade: $("#rushGrade").val(),
-						rushChannel: 'Application' // various ways to store the ID, you can choose
-					},
-					success: function(data) {
-					  // POST was successful - do something with the response
-					},
-					error: function(data) {
-					  // Server error, e.g. 404, 500, error
-					}
-				});
-			}
-
-		} else {
-			if( document.getElementById("rushPic").files.length == 0 ){
-				alert("Please include a picture of yourself with your application.");
-				return;
-			}
-			alert("Please fill all required fields/fix invalid fields.");
+		if ($("#rushEmail").val().trim().indexOf("@bu.edu", this.length - "@bu.edu".length) == -1 || $("#rushEmail").val().length > 15) {
+			alert("Please use your BU email");
 		}
+		return;
+	}
 		
-	} else if (appIndex == 1) {
-		
-		if (!checkTextareas()) {
-			alert("Please answer all required questions.");
-			return
-		}
-		
-		if (confirm("The following portion of the application has a 10 minute time limit and must be completed in one sitting. Press 'OK' to begin.")) {
-			appIndex = 2;
-			interval = setInterval(countdownTime, 1000)
-			$("#application_written").addClass("hidden")
-			$("#application_logic").removeClass("hidden")
-			window.scrollTo(0,0);
-			
-			$.ajax({
-					type: "POST",
-					url: "startedLogic.php",
-					data: {
-						email: $("#rushEmail").val(),
-					},
-					success: function(data) {
-					  // POST was successful - do something with the response
-					},
-					error: function(data) {
-					  // Server error, e.g. 404, 500, error
-					}
-				});
-		}
-		
-	} else if (appIndex == 2) {
-		
-		clearInterval(interval)
-		
-		if (confirm("Are you sure you want to submit your application?")) {
-			$("input[name=time]").val((totalTime - timeLeft).toString())
-			$("#rushForm").submit();
-		} else {
-			interval = setInterval(countdownTime, 1000)
-		}
+	if (!checkTextareas()) {
+		alert("Please answer all required questions.");
+		return
+	}
+	
+	if (confirm("Are you sure you want to submit your application?")) {
+		$("#rushForm").submit();
 	}
 }
 
@@ -110,33 +49,12 @@ function checkTextareas() {
 	var inputs = document.getElementById("rushForm").getElementsByTagName('textarea');
 	for (var i = 0; i < inputs.length; i++) {
 		// only validate the inputs that have the required attribute
-		if(inputs[i].className != "notRequired" && inputs[i].value == "" && inputs[i].name != "q9_second"){
+		if(inputs[i].className != "notRequired" && inputs[i].value == ""){
 			// found an empty field that is required
-			console.log("textarea" + i);
 			return false;
 		}
 	}
 	return true
-}
-
-var textElement = $("#countdownClock > p")
-function countdownTime() {
-	timeLeft--;
-	if (timeLeft % 60 < 10) {
-		textElement.text("Time Left: " + Math.floor(timeLeft / 60) + ":0" + (timeLeft % 60))
-	} else {
-		textElement.text("Time Left: " + Math.floor(timeLeft / 60) + ":" + (timeLeft % 60))
-	}
-	if (timeLeft == 0) {
-		clearInterval(interval)
-		autoSubmit()
-	}
-}
-
-function autoSubmit() {
-	alert("Thank you for applying! Unfortunately time has run out for the logical portion of this test. Your application will now be submitted.")
-	$("input[name=time]").val((totalTime - timeLeft).toString())
-	$("#rushForm").submit();
 }
 
 var Rushes = {};
@@ -147,6 +65,7 @@ function replaceAll(str, find, replace) {
 var rushInfo;
 {% for rush in rushes %}
 	rushInfo = {
+		'ApplicationStarted': "{{rush.application_started}}",
 		'FirstName': "{{rush.first_name}}",
 		'LastName': "{{rush.last_name}}",
 		'Email': "{{rush.email|lower}}",
@@ -173,10 +92,16 @@ $('input#rushEmail').on('keyup', function(e) {
 			$("input#rushLastName").val(rushesInfo['LastName']).parent().addClass("is-dirty");
 			$("input#rushPhone").val(rushesInfo['Phone']).parent().addClass("is-dirty");
 			$("input#rushMajors").val(rushesInfo['Majors']).parent().addClass("is-dirty");
-			$("input#rushMinors").val(rushesInfo['Majors']).parent().addClass("is-dirty");
+			$("input#rushMinors").val(rushesInfo['Minors']).parent().addClass("is-dirty");
 			$("input#rushSchool").val(rushesInfo['MajorSchools']).parent().addClass("is-dirty");
 			$("input#rushGrade").val(rushesInfo['Grade']).parent().addClass("is-dirty");
-			console.log(rushesInfo['AppSubmitted'])
+			$(".rush_grade .mdl-js-radio input[value='" + rushesInfo['Grade'] + "']").parent()[0].MaterialRadio.check();
+
+			var schools = rushesInfo['MajorSchools'];
+			for (var i = 0; i < schools.length; i++) {
+				console.log($(".rush_schools input[value='" + schools[i] + "']"));
+				$(".rush_schools .mdl-js-checkbox input[value='" + schools[i] + "']").parent()[0].MaterialCheckbox.check();
+			}
 			
 			if (rushesInfo['AppSubmitted'] === "1") {
 				setTimeout(function() {

@@ -1,10 +1,12 @@
 <style>
-	#rushForm div div.mdl-textfield {
+	
+
+	#rushForm div div div.mdl-textfield {
 		display:inline-block;
 		width:33%;
 		text-align:center;
 	}
-	#rushForm div div.mdl-textfield * {
+	#rushForm div div div.mdl-textfield * {
 		width: 95%;
 	}
 	#rushForm div div.pic {
@@ -12,23 +14,25 @@
 		width: 100%;
 		text-align: left;
 	}
-	#rushForm div div.pic p {
-		width: 33%; 
-		text-transform: uppercase;
+	#rushForm div div.pic {
+		display: block;
+		width: 100%;
+		text-align: left;
+		font-weight: 900;
 	}
 	#rushForm p {
 		font-family: "Open Sans", sans-serif;
 		font-size: 16px;
 		padding: 4px 0;
 		background: 16px;
-		color: rgba(0,0,0,.26);
+		color: rgba(0,0,0,1);
 	}
 	#rushForm p.description {
 		font-family: "Open Sans", sans-serif;
 		font-size: 16px;
 		color: rgba(0,0,0,1);
 	}
-	#rushForm div div.pic * {
+	#rushForm div div div.pic * {
 		width: auto;
 		display: inline-block;
 	}
@@ -39,10 +43,15 @@
 		font-size: 16px;
 		margin-bottom: 20px;
 	}
+	#rushForm input {
+		width: 100%;
+		border-color: rgba(0,0,0,.26);
+		font-size: 16px;
+	}
 	#rushForm .is-invalid label:after {
 		background-color:#000033;
 	}
-	#rushForm > div.hidden {
+	#rushForm > div > div.hidden {
 		display: none
 	}
 	#rushForm #application_logic label {
