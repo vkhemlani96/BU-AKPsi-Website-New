@@ -29,6 +29,14 @@ class RushProfileAdmin(admin.ModelAdmin):
 		return "%s %s" % (semester_full, year_full)
 	semester_year.short_description = "Semester"
 
+class RushApplicationAdmin(admin.ModelAdmin):
+	list_display = ('name',)
+	list_display_links = ('name',)
+
+	def name(self, obj):
+		return "hello"
+
 admin.site.register(RushEvent, EventAdmin)
 admin.site.register(RushEventLocation, EventLocationAdmin)
 admin.site.register(RushProfile, RushProfileAdmin)
+admin.site.register(RushApplication, RushApplicationAdmin)

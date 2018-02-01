@@ -1,0 +1,15 @@
+<div class="center vertical_padding title_section">
+	<h1>Recruitment Application</h1>
+	<div class="seperator"></div>
+	<h2></h2>
+</div>
+
+{% if success %}
+	<h2 style="margin: 200px 100px;"><strong>Thank you for your submission!</strong><br>We will review your application and contact you with further details by Saturday morning. A confirmation email will be sent to you shortly.<br><b>If you did not recieve a confirmation email, please check your "Junk" folder.</b></h2>
+{% else %}
+	<h2 style="margin: 50px 0;"><strong>An error has occured.</strong><br>Please copy paste the following and email it to <a href="mailto:akpsi.nu.recruitment@gmail.com">akpsi.nu.recuitment@gmail.com</a>.</h2>
+
+	<pre style ="
+    font-family: monospace; width: 80%; height: 100%;white-space: pre-wrap; margin: 0 10%;  background-color: rgba(0,0,0,.1); border: black 1px solid; padding: 10px; margin-bottom: 20px;">{{failure_data}}
+	</pre>
+{% endif %}
