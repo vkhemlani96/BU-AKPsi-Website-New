@@ -29,7 +29,7 @@ QUESTIONS = {
 		ShortAnswerQuestion("Why Alpha Kappa Psi?"),
 		ShortAnswerQuestion("What is your most notable work/leadership experience?"),
 		ShortAnswerQuestion("You are disappointed about an unfair decision. How do you react?"),
-		ShortAnswerQuestion("How do you know that you are stressed? What do you to de-stress?"),
+		ShortAnswerQuestion("How do you know that you are stressed? What do you do to de-stress?"),
 		ShortAnswerQuestion("<i>If this is not your first time applying</i>, what have you done to strengthen your candidacy?", required = False),
 	],
 	"logic": [
