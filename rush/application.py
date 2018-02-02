@@ -96,7 +96,7 @@ def submit(request):
 
 		application = RushApplication(
 			profile = rush,
-			address = post_data.get('rushAddress')[:30],
+			address = post_data.get('rushAddress')[:100],
 			gpa = post_data.get('rushGPA')[:5],
 			application_answers = application_answers,
 			picture = request.FILES['rushPic'],
