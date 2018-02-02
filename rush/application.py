@@ -83,21 +83,21 @@ def submit(request):
 		else:
 			rush = RushProfile()
 
-		rush.first_name = post_data.get('rushFirstName')
-		rush.last_name = post_data.get('rushLastName')
+		rush.first_name = post_data.get('rushFirstName')[:20]
+		rush.last_name = post_data.get('rushLastName')[:20]
 		rush.email = email
 		rush.semester = SEMESTER
-		rush.phone_number = post_data.get('rushPhone')
+		rush.phone_number = post_data.get('rushPhone')[:11]
 		rush.grade = post_data.get('rushGrade')
 		rush.major_schools = post_data.getlist('rushSchool[]')
-		rush.majors = post_data.get('rushMajors')
-		rush.minors = post_data.get('rushMinors')
+		rush.majors = post_data.get('rushMajors')[:100]
+		rush.minors = post_data.get('rushMinors')[:100]
 		rush.submitted_application = True
 
 		application = RushApplication(
 			profile = rush,
-			address = post_data.get('rushAddress'),
-			gpa = post_data.get('rushGPA'),
+			address = post_data.get('rushAddress')[:30],
+			gpa = post_data.get('rushGPA')[:5],
 			application_answers = application_answers,
 			picture = request.FILES['rushPic'],
 			resume = request.FILES['rushResume'],
