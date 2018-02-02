@@ -2,6 +2,7 @@
 import os
 import django_project.credentials as credentials
 import netifaces
+import raven
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'raven.contrib.django.raven_compat',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -117,3 +120,7 @@ STATIC_ROOT = '/home/django/django_project/django_project/static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+RAVEN_CONFIG = {
+    'dsn': 'https://bf26be97ba1a4d70888557d2ec1ce02b:05407d23dc8446f0a0c5a6e3a1613a07@sentry.io/282062',
+}
