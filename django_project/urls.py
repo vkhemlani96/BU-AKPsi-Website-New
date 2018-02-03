@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.static import serve
 from buakpsi import views
 
 urlpatterns = [
@@ -11,6 +12,9 @@ urlpatterns = [
     url(r'^faq/', views.faq),
     url(r'^nccg/', include('nccg.urls')),
     url(r'^rush\/*', include('rush.urls')),
+
+    url(r'^rush_resumes/(?P<path>.*)$', serve, {'document_root': 'rush_resumes'}),
+    url(r'^rush_pics/(?P<path>.*)$', serve, {'document_root': 'rush_pics'}),
 
     url(r'^admin/', include(admin.site.urls)),
 ]

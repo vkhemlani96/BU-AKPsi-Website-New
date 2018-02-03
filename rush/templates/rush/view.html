@@ -1,0 +1,75 @@
+<div class="center vertical_padding title_section">
+	<h1>{{rush.first_name}} {{rush.last_name}}</h1>
+	<div class="seperator"></div>
+</div>
+
+<style>
+	td {
+		width: 33%;
+		vertical-align: middle;
+	}
+	td p {
+		margin-left: 15px;
+		line-height: 30px;;
+	}
+	
+	.applicationBody p.question {
+		padding: 20px 0 10px;
+		font-weight:bold;
+	}
+</style>
+
+<div class="center vertical_padding">
+	<table>
+		<tr>
+			<td>
+				<img src="/{{rush.application.picture}}" height="200">
+			</td><td>
+				<p><strong>Grade: </strong>{{rush.grade}}</p>
+				<p><strong>School: </strong>{{rush.major_schools|join:", "}}</p>
+				<p><strong>Majors: </strong>{{rush.majors}}</p>
+				<p><strong>Minors: </strong>{{rush.minors}}</p>
+				<p><strong>Email: </strong>{{rush.email}}@bu.edu</p>
+				<p><strong>Phone: </strong>{{rush.phone_number}}</p>
+				<p><strong>GPA: </strong>{{rush.application.gpa}}</p>
+				<p><strong>Address: </strong>{{rush.application.address}}</p>
+			</td><td>
+				<p><strong>Channel: </strong>{{rush.channel}}</p>
+				{% for event in events %}
+					<p><strong>{{event.name}}: </strong>
+				
+					{% if event.name in rush.events_attended %}
+					 	Yes
+					 {% else %}
+					 	No
+					 {% endif %}
+				</p>
+				{% endfor %}
+				<p><strong>Submitted At: </strong>{{rush.application.timestamp|date:'m-d-Y P'}}</p>
+				<p><strong>Resume: <a href="/{{rush.application.resume}}" target="_blank">Click Here</a>
+			</td>
+		</tr>
+	</table>
+	<div class="applicationBody">
+
+		{% for question in questions.short_answer %}
+			<p class="question">{{question.question|safe}}</p>
+			<p>{{question.rush_answer}}</p>
+		{% endfor %}
+
+		<div class="table_seperator" style="width: 66%"></div>
+		<div class="applicationLogic vertical_padding">
+			{% for question in questions.logic %}
+				<p class="question">{{question.question|safe}} {% if question.answer %}<i>(Correct answer is: {{question.answer}})</i>{% endif %}</p>
+				<p>{{question.rush_answer}}</p>
+			{% endfor %}
+		</div>
+		<div class="table_seperator" style="width: 66%"></div>
+		<div style="opacity:.5">
+			{% for question in questions.feedback %}
+				<p class="question">{{question.question|safe}}</p>
+				<p>{{question.rush_answer}}</p>
+			{% endfor %}
+		</div>
+	</div>
+</div>
