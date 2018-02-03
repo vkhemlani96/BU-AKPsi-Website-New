@@ -2,9 +2,11 @@ import traceback
 from buakpsi.views import render_page
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from rush.models import RushProfile, RushApplication
+from django.shortcuts import get_object_or_404
+from rush.models import RushProfile, RushApplication, RushEvent
 from rush.settings import SEMESTER
 from random import shuffle
+from copy import copy
 
 class ShortAnswerQuestion():
 
@@ -102,6 +104,8 @@ def submit(request):
 			picture = request.FILES['rushPic'],
 			resume = request.FILES['rushResume'],
 		)
+		
+		application.save()
 
 		email = EmailMessage(
 			"Alpha Kappa Psi - Rush Application Submission",
@@ -121,9 +125,7 @@ def submit(request):
 			to=[email+"@bu.edu"],
 			reply_to=["akpsi.nu.recruitment@gmail.com"],
 		)
-		print("test")
 		email.send()
-		application.save()
 		success = True
 
 	except Exception as e:
@@ -140,4 +142,27 @@ def submit(request):
 		"body": render_to_string("rush/submit.html", body_context, request=request),
 	}
 
+	return render_page(request, context)
+
+def view(request, email):
+
+	rush = get_object_or_404(RushProfile, email=email)
+	events = RushEvent.objects.filter(is_open_rush = True)
+	answers = rush.application.application_answers
+
+	questions = copy(QUESTIONS)
+	for key in questions:
+		value = questions[key]
+		for i, question in enumerate(value):
+			question.rush_answer = answers[key + "_" + str(i+1)]
+
+	body_context = {
+		"rush": rush,
+		"events": events,
+		"questions": questions,
+	}
+
+	context = {
+		"body": render_to_string("rush/view.html", body_context),
+	}
 	return render_page(request, context)

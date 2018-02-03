@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^export', views.export),
     url(r'^application/?$', application.index),
     url(r'^application/submit', application.submit),
+    url(r'^application/view/(?P<email>.*)$', application.view),
 
 ]
