@@ -29,12 +29,18 @@ class RushProfileAdmin(admin.ModelAdmin):
 		return "%s %s" % (semester_full, year_full)
 	semester_year.short_description = "Semester"
 
+	name.admin_order_field = 'name'
+
 class RushApplicationAdmin(admin.ModelAdmin):
 	list_display = ('name',)
 	list_display_links = ('name',)
 
 	def name(self, obj):
-		return "hello"
+		rush = obj.profile
+		return "%s %s" % (rush.first_name, rush.last_name)
+
+	def URL(self,obj):
+		return "http://www.buakpsi.com/"
 
 admin.site.register(RushEvent, EventAdmin)
 admin.site.register(RushEventLocation, EventLocationAdmin)

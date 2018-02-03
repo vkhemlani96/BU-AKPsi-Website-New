@@ -91,15 +91,22 @@ class RushProfile(models.Model):
 	
 	events_attended = fields.ArrayField(models.CharField(max_length=50), default = list)
 	submitted_application = models.BooleanField(default = False)
-	interview_wave = models.PositiveSmallIntegerField(null = True)
-	interview_prelim_yes = models.PositiveSmallIntegerField(null = True)
-	interview_prelim_no = models.PositiveSmallIntegerField(null = True)
-	interview_prelim_abstain = models.PositiveSmallIntegerField(null = True)
-	interview_prelim_deliberate = models.NullBooleanField(null = True)
-	interview_final_yes = models.PositiveSmallIntegerField(null = True)
-	interview_final_no = models.PositiveSmallIntegerField(null = True)
-	interview_final_abstain = models.PositiveSmallIntegerField(null = True)
-	given_bid = models.NullBooleanField(null = True)
+	interview_wave = models.PositiveSmallIntegerField(null = True, blank=True)
+	interview_prelim_yes = models.PositiveSmallIntegerField(null = True, blank=True)
+	interview_prelim_no = models.PositiveSmallIntegerField(null = True, blank=True)
+	interview_prelim_abstain = models.PositiveSmallIntegerField(null = True, blank=True)
+	interview_prelim_deliberate = models.NullBooleanField(null = True, blank=True)
+	interview_final_yes = models.PositiveSmallIntegerField(null = True, blank=True)
+	interview_final_no = models.PositiveSmallIntegerField(null = True, blank=True)
+	interview_final_abstain = models.PositiveSmallIntegerField(null = True, blank=True)
+	given_bid = models.NullBooleanField(null = True, blank=True)
+
+	def __str__(self):
+		return "%s %s (%s@bu.edu)" % (self.first_name, self.last_name, self.email)
+
+	class Meta:
+		verbose_name='Rush Profile'
+		ordering = ['last_name']
 
 class RushApplication(models.Model):
 	profile = models.OneToOneField(RushProfile, on_delete=models.CASCADE, related_name='application')
@@ -109,3 +116,11 @@ class RushApplication(models.Model):
 	application_answers = fields.JSONField()
 	picture = models.ImageField(upload_to = 'rush_pics/', null = True)
 	resume = models.FileField(upload_to = 'rush_resumes/', null = True)
+
+	def __str__(self):
+		rush = self.profile
+		return "%s %s (%s@bu.edu)" % (rush.first_name, rush.last_name, rush.email)
+
+	class Meta:
+		verbose_name='Application'
+		ordering = ['timestamp']
