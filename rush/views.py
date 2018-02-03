@@ -192,6 +192,7 @@ fields = (
 	('Majors', 'majors'),
 	('Minors', 'minors'),
 	('Events', 'events_attended'),
+	('Submitted Application?', 'submitted_application'),
 )
 
 def export(request):

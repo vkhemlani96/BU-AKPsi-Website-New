@@ -104,8 +104,9 @@ def submit(request):
 			picture = request.FILES['rushPic'],
 			resume = request.FILES['rushResume'],
 		)
-		
+
 		application.save()
+		rush.save()
 
 		email = EmailMessage(
 			"Alpha Kappa Psi - Rush Application Submission",
