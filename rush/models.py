@@ -104,7 +104,7 @@ class RushProfile(models.Model):
 class RushApplication(models.Model):
 	profile = models.OneToOneField(RushProfile, on_delete=models.CASCADE, related_name='application')
 	timestamp = models.DateTimeField(auto_now_add=True)
-	address = models.CharField(max_length=30)
+	address = models.CharField(max_length=100)
 	gpa = models.CharField(max_length=5)
 	application_answers = fields.JSONField()
 	picture = models.ImageField(upload_to = 'rush_pics/', null = True)
