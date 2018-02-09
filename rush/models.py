@@ -111,8 +111,8 @@ class RushProfile(models.Model):
 class RushApplication(models.Model):
 	profile = models.OneToOneField(RushProfile, on_delete=models.CASCADE, related_name='application')
 	timestamp = models.DateTimeField(auto_now_add=True)
-	address = models.CharField(max_length=100)
-	gpa = models.CharField(max_length=5)
+	address = models.CharField(max_length=100, default = "N/A")
+	gpa = models.CharField(max_length=5, default = 0)
 	application_answers = fields.JSONField(null = True, blank = True)
 	picture = models.ImageField(upload_to = 'rush_pics/', null = True, blank = True)
 	resume = models.FileField(upload_to = 'rush_resumes/', null = True, blank = True)
