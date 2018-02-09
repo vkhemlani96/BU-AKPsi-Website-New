@@ -113,9 +113,9 @@ class RushApplication(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True)
 	address = models.CharField(max_length=100)
 	gpa = models.CharField(max_length=5)
-	application_answers = fields.JSONField()
-	picture = models.ImageField(upload_to = 'rush_pics/', null = True)
-	resume = models.FileField(upload_to = 'rush_resumes/', null = True)
+	application_answers = fields.JSONField(null = True, blank = True)
+	picture = models.ImageField(upload_to = 'rush_pics/', null = True, blank = True)
+	resume = models.FileField(upload_to = 'rush_resumes/', null = True, blank = True)
 
 	def __str__(self):
 		rush = self.profile
