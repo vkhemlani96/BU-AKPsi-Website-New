@@ -236,3 +236,21 @@ def data(request):
 		"body": render_to_string('rush/data.html', request=request)
 	}
 	return render_page(request, context)
+
+def notesheet(request):
+	interviewees = RushProfile.objects \
+		.extra(select={'lower_name':'lower(last_name)'}) \
+		.filter(semester = SEMESTER, interview_wave__gte = 1) \
+		.order_by('interview_wave', 'lower_name', 'first_name')
+
+	for rush in interviewees:
+		if rush.grade == "FR":
+			rush.grade = "Freshman"
+		elif rush.grade == "SO":
+			rush.grade = "Sophomore"
+		elif rush.grade == "JR":
+			rush.grade = "Junior"
+		elif rush.grade == "SR":
+			rush.grade = "Senior"
+
+	return render(request, 'rush/notesheet.html', {'interviewees': interviewees})
