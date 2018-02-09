@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<title>Rushes | Alpha Kappa Psi Nu Chapter</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Lato:900" rel="stylesheet">
+
+		<style type="text/css">
+			@font-face {
+				font-family: 'Bebas Neue';
+				src: 
+					local('☺'), 
+					url('../fonts/BEBASNEUE REGULAR.svg') format('svg'),
+					url('../fonts/BEBASNEUE REGULAR.OTF') format('opentype'), 
+					url('../fonts/BEBASNEUE REGULAR.woff') format('woff'), 
+					url('../fonts/BEBASNEUE REGULAR.ttf') format('truetype');
+			}
+			@font-face {
+				font-family: 'Bebas Neue';
+				src: 
+					local('☺'), 
+					url('../fonts/BEBASNEUE BOLD.svg') format('svg'),
+					url('../fonts/BEBASNEUE BOLD.woff') format('woff'), 
+					url('../fonts/BEBASNEUE BOLD.OTF') format('opentype'), 
+					url('../fonts/BEBASNEUE BOLD.ttf') format('truetype');
+				font-weight: bold;
+			}
+			table {
+				border-collapse: collapse;
+			}
+			table, th, td {
+				border: 1px solid black;
+			}
+			p {
+				margin: 0;
+				font-family: 'Open Sans', sans-serif;
+				font-size: 13px;
+				text-align: left;
+				padding: 0px 2px;
+			}
+			td {
+				padding: 0;
+			}
+			b {
+				font-weight: bold;
+			}
+			@media print {
+				.headTable {page-break-after: always;}
+			}
+
+
+
+			.headTable {
+				width: 8in;
+			}
+			.headTable .rushRow {
+				height: 2.1in;
+			}
+			.headTable .rushRow td {
+				position: relative;
+			}
+			.rushRow > td > .rushDetails {
+				height: 2.1in;
+				width: 1.5in;
+				border-right: black solid .02in;
+				float: left;
+				clear: both;
+			}
+			.rushComments h2 {
+				font-family: 'Bebas Neue';
+				margin: 0;
+				font-weight: normal;
+				text-align: center;
+				margin: 5px 0;
+			}
+			.rushComments table tr p {
+				text-align: center;
+			}
+			.rushComments table tr td:first-child p {
+				text-align: left;
+				margin: 1.5px 0 1.5px 1.5px;
+			}
+			.rushPic {
+				width: 1.4in;
+				height: 2in;
+				margin: .04in;
+				background-size: cover;
+				display: inline-block;
+				background-position: center;
+			}
+			.rushDecision {
+				position: absolute;
+				width: 2in;
+				height: .3in;
+				right: 0;
+				bottom: 0;
+				text-align: center;
+			}
+			.rushNumber {
+				position: absolute;
+				width: .25in;
+				height: .3in;
+				right: .08in;
+				top: .05in;
+			}
+			.rushNumber p {
+				text-align: right;
+			}
+			.rushDecision p {
+				width: .5in;
+				text-align: center;
+				display: inline-block
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<table class="headTable">
+
+			{% for rush in interviewees %}
+
+			{% if forloop.counter0|divisibleby:5 and forloop.counter0 > 0 %}
+			</table><table class="headTable">
+			{% endif %}
+			<tr class="rushRow">
+				<td>
+					<div class="rushDetails">
+						<div class="rushPic" style="background-image: url('http://buakpsi.com/{{rush.application.picture}}');"></div>
+						<!--						<p>Nick Madson<br>COM, Junior</p>-->
+					</div>
+					<div class="rushComments">
+						<h2><b>{{rush.first_name}} {{rush.last_name}}</b> ({{rush.major_schools|join:", "}}, {{rush.grade}})</p>
+						<table style="border-left:none; border-right:none">
+							<tr>
+							<td width="380" style="border-left:none"><p>Executive Presence?</p></td>
+							<td width="80"><p>Yes</p></td>
+							<td width="80"><p>No</p></td>
+							<td width="80" style="border-right:none"><p>Maybe</p></td>
+							</tr><tr>
+							<td width="380" style="border-left:none"><p>Alignment of Values (B.U.S.K.I)</p></td>
+							<td width="80"><p>Yes</p></td>
+							<td width="80"><p>No</p></td>
+							<td width="80" style="border-right:none"><p>Maybe</p></td>
+							</tr><tr>
+							<td width="380" style="border-left:none"><p>Passionate?</p></td>
+							<td width="80"><p>Yes</p></td>
+							<td width="80"><p>No</p></td>
+							<td width="80" style="border-right:none"><p>Maybe</p></td>
+							</tr><tr>
+							<td width="380" style="border-left:none"><p>Potential to make impact in and outside AKPsi?</p></td>
+							<td width="80"><p>Yes</p></td>
+							<td width="80"><p>No</p></td>
+							<td width="80" style="border-right:none"><p>Maybe</p></td>
+							</tr><tr>
+							<td width="380" style="border-left:none"><p>See them wearing our letters?</p></td>
+							<td width="80"><p>Yes</p></td>
+							<td width="80"><p>No</p></td>
+							<td width="80" style="border-right:none"><p>Maybe</p></td>
+							</tr>
+						</table>
+						<p><b>Comments: </b></p>
+					</div>
+					<div class="rushDecision">
+						<p><b>Y</b></p><p><b>N</b></p><p>A</p>
+					</div>
+					<div class="rushNumber">
+						<p><b>#{{forloop.counter}}</b></p>
+					</div>
+				</td>
+			</tr>
+
+			{% endfor %}
+		</table>
+
+	</body>
+
+</html>

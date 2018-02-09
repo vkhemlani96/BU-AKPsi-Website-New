@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^application/?$', application.index),
     url(r'^application/submit', application.submit),
     url(r'^application/view/(?P<email>.*)$', application.view),
+    url(r'^notesheet', views.notesheet),
 
 ]
