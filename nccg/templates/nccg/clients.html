@@ -7,25 +7,17 @@
 	<div class="vertical_padding center" style="padding-top: 0">
 <!--		<p style="padding-bottom:40px" class="indented_text">Partners are alumni of Alpha Kappa Psi who either have worked or are currently working professionally as consultants. A Partner is assigned to each project that NCCG accepts and remains involved throughout the semester to ensure that significant value is added to each business.</p>-->
 		<table class="nccg_client_table">
-		<?php
-			foreach ($clients as $obj) {
-				$img = preg_replace("/ \(.+\)/i", "" , $obj[0]);
-				$img = preg_replace("/[^A-Za-z]/i","",$img);
-				$img = strtolower($img);
-				echo "
-				<tr>
-				<td class=\"nccg_client_img\">
-					<a href=\"$obj[3]\" target=\"_blank\"><img src=\"../img/nccg/clients/{$img}_thumb.png\"></a>
-				</td>
-				<td>
-					<h2 class=\"nccg_name\"><strong>$obj[0]</strong> $obj[1]</h2>
-					<p><a href=\"$obj[3]\" target=\"_blank\">".preg_replace("/ is/i","</a> is",$obj[2],1)."</p>
-				</td>
-				</tr>";
-				if ($obj != end($clients))
-					echo "<tr><td colspan=\"2\"><div class=\"table_seperator\"></div></td></tr>";
-			}
-			
-		?>
+				{% for client in clients %}
+					<tr>
+						<td class="nccg_advisor_image_cell">
+							<img src="{% static 'nccg/img/clients/{{client.company_name|lower}}_thumb.png' %}">
+						</td>
+						<td class="nccg_advisor_bio_cell">
+							<h2 class="nccg_name"><strong>{{client.company_name}</strong>{{client.semester}}</h2>
+							<div class="seperator"></div>
+							<p>{{client.description}}</p>
+						</td>
+					</tr>
+		{% endfor %}
 		</table>
 	</div>
