@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^nccg/', include('nccg.urls')),
     url(r'^rush\/*', include('rush.urls')),
 
+    url(r'^ubru/', include('ubru.urls')),
+
     url(r'^rush_resumes/(?P<path>.*)$', serve, {'document_root': 'rush_resumes'}),
     url(r'^rush_pics/(?P<path>.*)$', serve, {'document_root': 'rush_pics'}),
 

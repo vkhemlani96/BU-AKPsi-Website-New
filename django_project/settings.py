@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'eye2eye',
     'nccg',
     'rush',
+    'ubru', # vinay put this here
 
     'django.contrib.admin',
     'django.contrib.auth',
