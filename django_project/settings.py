@@ -26,6 +26,8 @@ SECRET_KEY = credentials.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CORS_ORIGIN_ALLOW_ALL=True
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -35,6 +37,8 @@ INSTALLED_APPS = (
     'nccg',
     'rush',
     'ubru', # vinay put this here
+
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +51,9 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
