@@ -16,8 +16,8 @@ class Brother(models.Model):
     year = models.CharField(max_length=4)
     major_school = models.CharField(max_length=255, null=True)
     major = models.CharField(max_length=255)
-    minor_school = models.CharField(max_length=255)
-    minor = models.CharField(max_length=255)
+    minor_school = models.CharField(max_length=255, null=True, blank=True)
+    minor = models.CharField(max_length=255, null=True, blank=True)
     linkedin = models.URLField(max_length=300)
     status = models.CharField(
         max_length=2, choices=((ACTIVE, "Active"), (INACTIVE, "Inactive"), (ALUMNI, "Alumni"), (LOA, "LOA")))
