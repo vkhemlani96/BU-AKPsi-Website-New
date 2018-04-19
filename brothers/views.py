@@ -30,8 +30,6 @@ def index(request):
 		'brothers': brothers,
 		'active_classes': sorted_classes
 	}
-
-	
 	
 	context = {
 		"body": render_to_string("brothers/index.html", body_context),
