@@ -25,6 +25,8 @@ def index(request):
 		.exclude(class_name = "Transfer"))
 	sorted_classes = sorted(classes, key=key_for_class) + ["Transfer"]
 
+	print(sorted_classes)
+
 	body_context = {
 		'eboard': EBoardMember.objects.all(),
 		'brothers': brothers,
