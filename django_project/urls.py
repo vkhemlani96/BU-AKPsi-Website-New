@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^eye2eye/', include('eye2eye.urls')),
     url(r'^faq/', views.faq),
     url(r'^nccg/', include('nccg.urls')),
+    url(r'^sig/', include('sig.urls')),
     url(r'^rush\/*', include('rush.urls')),
 
     url(r'^rush_resumes/(?P<path>.*)$', serve, {'document_root': 'rush_resumes'}),
