@@ -3,8 +3,8 @@
 <div class="eboard_img">
 	<p class="position">{{ member.position }}</p>
 	<div class="brother_img">
-
-		{% with 'brothers/'|add:member.brother.class_name|lower|add:'s/'|add:member.brother.last_name|lower|add:'_'|add:member.brother.first_name|lower|add:'_thumb.png' as img_url %}
+	
+		{% with 'brothers/'|add:brother.thumbnail_image as img_url %}
 		<img height="200" width="200" onmerror="$(this).attr('src','/static/img/brothers/nophoto.png');"  src="{% static img_url %}">
 		{% endwith %}
 
