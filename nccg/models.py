@@ -6,7 +6,11 @@ from buakpsi.models import PositionManager
 class NCCGManager(PositionManager):
     positions = [
         'Executive Director',
+        'President',
         'Engagement Manager',
+        'Vice President',
+        'Director of Marketing',
+        'Director of Corporate Outreach',
         'Senior Associate',
         'Associate'
     ]
