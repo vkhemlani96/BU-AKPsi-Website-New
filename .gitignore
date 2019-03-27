@@ -1,6 +1,8 @@
 **/*.pyc
 **/.DS_Store
 
+update-site
+
 django_project/static/*
 django_project/credentials.py
 
