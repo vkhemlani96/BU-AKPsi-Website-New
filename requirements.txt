@@ -1,4 +1,4 @@
-Django==1.11.5
+Django==1.11.29
 django-graphos==0.3.41
 jsonfield==2.0.2
 netifaces==0.10.6
