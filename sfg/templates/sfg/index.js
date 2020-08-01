@@ -6,8 +6,10 @@ var imgCell = [ [
 "kbcm",
 ],[
 "ubs",
+"citigroup",
 ],[
-"santander"
+"santander",
+"kbcm",
 ]];
 
 function changeImgCell(index) {
