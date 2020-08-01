@@ -7,6 +7,7 @@ def index(request):
 	body = render_to_string('sfg/index.html')
 	context = {
 		'body': body,
+		'post_body_script': render_to_string('buakpsi/index.js'),
 	}
 
 	return render_page(request, context)
@@ -21,5 +22,4 @@ def team(request):
 		"post_body_script": render_to_string("sfg/team.js")
 	}
 	return render_page(request, context)
-
 
