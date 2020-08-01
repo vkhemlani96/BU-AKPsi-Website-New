@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'eye2eye',
     'nccg',
     'rush',
-    'sig',
+    'sfg',
 
     'django.contrib.admin',
     'django.contrib.auth',
