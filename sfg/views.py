@@ -1,4 +1,4 @@
-from nccg.models import SFGMember
+from sfg.models import SFGMember
 from buakpsi.views import render_page
 from django.template.loader import render_to_string
 from django.shortcuts import render
