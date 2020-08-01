@@ -27,12 +27,12 @@ setInterval(function() {
 	setTimeout(function() {
 		//Changes Right Cell after delay
 		changeImgCell(2)
-	}, 1000);
+	}, 10000);
 	setTimeout(function() {
 		//Changes Left Cell after delay
 		changeImgCell(0)
-	}, 2000);
-}, 3000);
+	}, 20000);
+}, 30000);
 
 setTimeout(function() {
 	$(".dropdown").each(function(index){
