@@ -18,7 +18,7 @@ class SFGMember(models.Model):
     brother = models.OneToOneField(Brother)
     position = models.CharField(max_length=45)
     bio = models.TextField()
-    objects = NCCGManager()
+    objects = SFGManager()
 
     def __str__(self):
         return "%s %s (%s)" % (self.brother.first_name, self.brother.last_name, self.position)
