@@ -1,5 +1,5 @@
 from django.contrib import admin
-from nccg.models import SFGMember
+from sfg.models import SFGMember
 
 class SFGMemberAdmin(admin.ModelAdmin):
     list_display = ('name', 'position')
