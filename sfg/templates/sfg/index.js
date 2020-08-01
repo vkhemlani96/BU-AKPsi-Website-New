@@ -17,7 +17,7 @@ function changeImgCell(index) {
 		$(this).attr("src", "/static/sfg/img/placements/" + imgCell[index][imgCellIndex] + "_cropped.png");
 	}).fadeIn();
 	if (index == 0) {
-		imgCellIndex = (imgCellIndex + 1) % 5;	
+		imgCellIndex = (imgCellIndex + 1) % 2;	
 	}
 }
 
