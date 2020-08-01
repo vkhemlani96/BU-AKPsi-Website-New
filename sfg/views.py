@@ -7,7 +7,7 @@ def index(request):
 	body = render_to_string('sfg/index.html')
 	context = {
 		'body': body,
-		'post_body_script': render_to_string('buakpsi/index.js'),
+		'post_body_script': render_to_string('sfg/index.js'),
 	}
 
 	return render_page(request, context)
