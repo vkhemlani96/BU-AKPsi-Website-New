@@ -1,0 +1,26 @@
+{% load static %}
+<div class="vertical_padding title_section">
+		<h1>Meet the Team</h1>
+		<div class="seperator"></div>
+		<h2>Nu Chapter Consulting Group</h2>
+	</div>
+	
+	<div class="vertical_padding">
+		<table class="sfg_table center">
+			{% for member in members %}
+			<tr>
+				<td>
+				
+				{% include 'brothers/brother_square.html' with brother=member.brother detail=True%}
+
+				</td>
+				<td class="sfg_bio_cell">
+					<h2 class="sfg_name"><strong>{{member.brother}}</strong> {{member.position}}
+						<a target="_blank" href="{{member.brother.linkedin}}"><img height="24" style="float:right; margin-top:2px" src="{% static 'sfg/img/linkedin.png' %}"></a>
+					</h2>
+					<p>{{member.bio}}</p>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
