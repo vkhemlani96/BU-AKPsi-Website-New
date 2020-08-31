@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^faq/', views.faq),
     url(r'^nccg/', include('nccg.urls')),
     url(r'^sfg/', include('sfg.urls')),
-    url(r'^rush\/*', include('rush.urls')),
+    url(r'^recruitment\/*', include('rush.urls')),
 
     url(r'^rush_resumes/(?P<path>.*)$', serve, {'document_root': 'rush_resumes'}),
     url(r'^rush_pics/(?P<path>.*)$', serve, {'document_root': 'rush_pics'}),
