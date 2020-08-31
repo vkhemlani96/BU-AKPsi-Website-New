@@ -65,7 +65,7 @@
 			</div>
 		</div>
 	
-		<div class="row vertical_padding" style="padding-top: 10px">
+		<div class="row vertical_padding">
 			{% for event in events|slice:"2:" %}
 			<div class="col-md-5{% cycle ' col-md-offset-1' '' %}">
 				<h2><strong>{{event.name}}</strong> {{event.start_time|date:"D, N d"}}</h2>
