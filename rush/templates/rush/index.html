@@ -56,10 +56,15 @@
 				</div>
 			</div>
 			<div class="row" style="margin-top:20px;">
-				<p class="col-md-10 col-md-offset-1">{{events.0.description|safe}}</p>
+				<p class="col-md-10 col-md-offset-2">{{events.0.description|safe}}</p>
 			</div>
 		</div>
-
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="table_seperator"></div>
+			</div>
+		</div>
+	
 		<div class="row vertical_padding">
 			{% for event in events|slice:"2:" %}
 			<div class="col-md-5{% cycle ' col-md-offset-1' '' %}">
