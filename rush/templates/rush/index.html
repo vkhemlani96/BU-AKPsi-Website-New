@@ -70,7 +70,7 @@
 			<div class="col-md-5{% cycle ' col-md-offset-1' '' %}">
 				<h2><strong>{{event.name}}</strong> {{event.start_time|date:"D, N d"}}</h2>
 				<h4>{{event.location}} | {{event.start_time|date:"f"}}-{{event.end_time|date:"f A"}}</h4>
-				<p style="margin-top: 10px;">{{event.description|safe}}</p>
+				<p style="margin-top: 10px; padding-bottom: 10px">{{event.description|safe}}</p>
 			</div>
 			{% endfor %}
 		</div>
