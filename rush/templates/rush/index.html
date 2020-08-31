@@ -42,7 +42,7 @@
 	
 		{% if events|length > 0 %}
 
-		<div class="vertical_padding">
+		<!-- <div class="vertical_padding">
 			<div class="row">
 				<div class="col-md-5 col-md-offset-1">
 					<h2><strong>{{events.0.name}}</strong> {{events.0.start_time|date:"D, N d"}}</h2>
@@ -63,10 +63,10 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="table_seperator"></div>
 			</div>
-		</div>
+		</div> -->
 	
 		<div class="row vertical_padding">
-			{% for event in events|slice:"2:" %}
+			{% for event in events|slice:"0:" %}
 			<div class="col-md-5{% cycle ' col-md-offset-1' '' %}">
 				<h2><strong>{{event.name}}</strong> {{event.start_time|date:"D, N d"}}</h2>
 				<h4>{{event.location}} | {{event.start_time|date:"f"}}-{{event.end_time|date:"f A"}}</h4>
