@@ -44,19 +44,19 @@
 
 		<div class="vertical_padding">
 			<div class="row">
-				<div class="col-md-3 col-md-offset-1">
+				<div class="col-md-5 col-md-offset-1">
 					<h2><strong>{{events.0.name}}</strong> {{events.0.start_time|date:"D, N d"}}</h2>
 					<h4>
 					{{events.0.location}} | {{events.0.start_time|date:"f"}}-{{events.0.end_time|date:"f A"}}</h4>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-5">
 					<h2><strong>{{events.1.name}}</strong> {{events.1.start_time|date:"D, N d"}}</h2>
 					<h4>
 					{{events.1.location}} | {{events.1.start_time|date:"f"}}-{{events.1.end_time|date:"f A"}}</h4>
 				</div>
 			</div>
 			<div class="row" style="margin-top:20px;">
-				<p class="col-md-10 col-md-offset-2">{{events.0.description|safe}}</p>
+				<p class="col-md-10 col-md-offset-1">{{events.0.description|safe}}</p>
 			</div>
 		</div>
 		<div class="row">
@@ -67,7 +67,7 @@
 	
 		<div class="row vertical_padding">
 			{% for event in events|slice:"2:" %}
-			<div class="col-md-3{% cycle ' col-md-offset-1' '' %}">
+			<div class="col-md-5{% cycle ' col-md-offset-1' '' %}">
 				<h2><strong>{{event.name}}</strong> {{event.start_time|date:"D, N d"}}</h2>
 				<h4>{{event.location}} | {{event.start_time|date:"f"}}-{{event.end_time|date:"f A"}}</h4>
 				<p style="margin-top: 20px;">{{event.description|safe}}</p>
