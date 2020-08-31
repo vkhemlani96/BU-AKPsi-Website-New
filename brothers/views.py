@@ -6,7 +6,10 @@ from .models import EBoardMember, Brother
 classes = ["Alpha", "Beta", "Gamma", "Delta", "Epsilon", 
 	"Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu",
 	"Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon",
-	"Phi", "Chi", "Psi", "Omega"]
+	"Phi", "Chi", "Psi", "Omega", "Alpha Alpha", "Alpha Beta", "Alpha Gamma", 
+	"Alpha Delta", "Alpha Epsilon", "Alpha Zeta", "Alpha Eta", "Alpha Theta", "Alpha Iota",
+	"Alpha Kappa", "Alpha Lambda", "Alpha Mu", "Alpha Nu", "Alpha Xi", "Alpha Omicron", "Alpha Pi", 
+	"Alpha Rho", "Alpha Sigma", "Alpha Tau", "Alpha Upsilon", "Alpha Phi", "Alpha Chi", "Alpha Psi", "Alpha Omega"]
 
 # Calculates score for class used to sort
 # Alpha: 0

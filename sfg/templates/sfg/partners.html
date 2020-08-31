@@ -1,0 +1,25 @@
+{% load static %}
+<div class="vertical_padding title_section">
+		<h1>Our Partners</h1>
+		<div class="seperator"></div>
+		<h2>Nu Chapter Consulting Group</h2>
+	</div>
+	
+	<div class="center vertical_padding" style="width:90%; max-width: 1200px;">
+		<p style="padding-bottom:40px" class="indented_text">Partners are alumni of Alpha Kappa Psi who either have worked or are currently working professionally as consultants. A Partner is assigned to each project that NCCG accepts and remains involved throughout the semester to ensure that significant value is added to each business.</p>
+		<table class="sfg_advisor_table">
+		{% for partner in partners %}
+					<tr>
+						<td class="sfg_advisor_image_cell">
+							<img src="{% static 'sfg/img/{{partner.last_name|lower}}_{{partner.first_name|lower}}_thumb.png' %}">
+						</td>
+						<td class="sfg_advisor_bio_cell">
+							<h2 class="sfg_name"><strong>{{partner.first_name}} {{partner.last_name}}</strong></h2>
+							<h4>{{partner.title}}</h4>
+							<div class="seperator"></div>
+							<p>{{partner.bio}}</p>
+						</td>
+					</tr>
+		{% endfor %}
+		</table>
+	</div>
