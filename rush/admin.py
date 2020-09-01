@@ -47,7 +47,7 @@ class RushApplicationAdmin(admin.ModelAdmin):
 	def URL(self,obj):
 		return "http://www.buakpsi.com/"
 
-admin.site.register(RushFAQAdmin, FAQAdmin)
+admin.site.register(rush_FAQ, RushFAQAdmin)
 admin.site.register(RushEvent, EventAdmin)
 admin.site.register(RushEventLocation, EventLocationAdmin)
 admin.site.register(RushProfile, RushProfileAdmin)
