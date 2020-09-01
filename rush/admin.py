@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from buakpsi.models import rush_FAQ
+from rush.models import rush_FAQ
 
 class RushFAQAdmin(admin.ModelAdmin):
 	list_display = ('question', )
