@@ -47,6 +47,15 @@ class RushApplicationAdmin(admin.ModelAdmin):
 	def URL(self,obj):
 		return "http://www.buakpsi.com/"
 
+class PositionManager(models.Manager):
+    def get_queryset(self):
+        return super(PositionManager, self).get_queryset().annotate(
+            position_order=Case(
+                *[When(position=x, then=Value(i)) for i, x in enumerate(self.positions)],
+                output_field = IntegerField()
+            )
+        ).order_by('position_order', 'brother__last_name')
+
 admin.site.register(rush_FAQ, RushFAQAdmin)
 admin.site.register(RushEvent, EventAdmin)
 admin.site.register(RushEventLocation, EventLocationAdmin)
