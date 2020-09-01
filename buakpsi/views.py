@@ -53,19 +53,6 @@ def faq(request):
 	}
 	return render_page(request,context)
 
-def faq(request):
-    
-	body_context = {
-		'Rush FAQ': rush_FAQ.objects.all(),
-	}
-
-	context = {
-		'body': render_to_string('buakpsi/recruitment.html', body_context),
-	}
-	return render_page(request,context)
-
-
-
 def contact(request):
 
 	email_sent = False
