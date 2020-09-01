@@ -1,5 +1,10 @@
 from django.contrib import admin
 from .models import *
+from buakpsi.models import rush_FAQ
+
+class RushFAQAdmin(admin.ModelAdmin):
+	list_display = ('question', )
+	list_display_links = ('question',)
 
 class EventLocationAdmin(admin.ModelAdmin):
 	list_display = ('name', 'abbreviation', 'lat', 'lng')
@@ -42,6 +47,7 @@ class RushApplicationAdmin(admin.ModelAdmin):
 	def URL(self,obj):
 		return "http://www.buakpsi.com/"
 
+admin.site.register(RushFAQAdmin, FAQAdmin)
 admin.site.register(RushEvent, EventAdmin)
 admin.site.register(RushEventLocation, EventLocationAdmin)
 admin.site.register(RushProfile, RushProfileAdmin)
