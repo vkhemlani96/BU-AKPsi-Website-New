@@ -4,7 +4,6 @@ from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.core.mail import EmailMessage
 from buakpsi.models import FAQ
-from buakpsi.models import rush_FAQ
 from brothers.models import EBoardMember
 
 def render_page(request, context, navbar_size = 'small'):
