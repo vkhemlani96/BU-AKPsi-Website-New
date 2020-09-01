@@ -42,15 +42,15 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='rush.RushEventLocation'),
         ),
         migrations.CreateModel(
-            name='FAQ',
+            name='Rush FAQ',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('question', models.CharField(max_length=200)),
                 ('answer', models.TextField()),
             ],
             options={
-                'verbose_name': 'FAQ',
-                'verbose_name_plural': 'FAQs',
+                'verbose_name': 'Rush FAQ',
+                'verbose_name_plural': 'Rush FAQs',
             },
         ),
     ]
