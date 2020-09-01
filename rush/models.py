@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres import fields
+from django.db.models import Case, When, Value, IntegerField
 
 class RushEventLocation(models.Model):
 	name = models.CharField(max_length=50)
