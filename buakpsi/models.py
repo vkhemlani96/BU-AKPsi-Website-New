@@ -9,6 +9,14 @@ class FAQ(models.Model):
         verbose_name = "FAQ"
         verbose_name_plural = "FAQs"
 
+class rush_FAQ(models.Model):
+    question = models.CharField(max_length=200)
+    answer = models.TextField()
+
+    class Meta:
+        verbose_name = "Rush FAQ"
+        verbose_name_plural = "Rush FAQs"
+
 class PositionManager(models.Manager):
     def get_queryset(self):
         return super(PositionManager, self).get_queryset().annotate(
