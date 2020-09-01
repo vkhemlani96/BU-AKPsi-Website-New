@@ -41,4 +41,16 @@ class Migration(migrations.Migration):
             name='building',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='rush.RushEventLocation'),
         ),
+        migrations.CreateModel(
+            name='FAQ',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('question', models.CharField(max_length=200)),
+                ('answer', models.TextField()),
+            ],
+            options={
+                'verbose_name': 'FAQ',
+                'verbose_name_plural': 'FAQs',
+            },
+        ),
     ]
