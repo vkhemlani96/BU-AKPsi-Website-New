@@ -4,6 +4,7 @@ from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.core.mail import EmailMessage
 from buakpsi.models import FAQ
+from buakpsi.models import rush_FAQ
 from brothers.models import EBoardMember
 
 def render_page(request, context, navbar_size = 'small'):
@@ -53,16 +54,17 @@ def faq(request):
 	}
 	return render_page(request,context)
 
-def rush_faq(request):
-    	
-    body_context = {
-		'FAQ' : rush_FAQ.objects.all(),
+def faq(request):
+    
+	body_context = {
+		'Rush FAQ': rush_FAQ.objects.all(),
 	}
 
 	context = {
-		'body' : render_to_string('buakpsi/recruitment.html', body_context),
+		'body': render_to_string('buakpsi/recruitment.html', body_context),
 	}
-	return render_page(request, context)
+	return render_page(request,context)
+
 
 
 def contact(request):
