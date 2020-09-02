@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from buakpsi.views import render_page
 from rush.models import RushEventLocation, RushEvent, RushProfile
 from rush.settings import SIGNUP_SOURCES, SEMESTER, DATA_PASSWORD, EXPORT_PASSWORD
-from rush.models import rush_FAQ
 
 def index(request):
 
@@ -255,14 +254,3 @@ def notesheet(request):
 			rush.grade = "Senior"
 
 	return render(request, 'rush/notesheet.html', {'interviewees': interviewees})
-
-def rush_faq(request):
-    
-	body_context = {
-		'FAQ': rush_FAQ.objects.all(),
-	}
-
-	context = {
-		'body': render_to_string('rush/faq.html', body_context),
-	}
-	return render_page(request,context)
