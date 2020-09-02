@@ -263,6 +263,6 @@ def rush_faq(request):
 	}
 
 	context = {
-		'body': render_to_string('buakpsi/recruitment.html', body_context),
+		'body': render_to_string('rush/faq.html', body_context),
 	}
 	return render_page(request,context)
