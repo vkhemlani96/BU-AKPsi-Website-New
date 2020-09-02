@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import *
 
-class RushFAQAdmin(admin.ModelAdmin):
-	list_display = ('question', )
-	list_display_links = ('question',)
+# class RushFAQAdmin(admin.ModelAdmin):
+# 	list_display = ('question', )
+# 	list_display_links = ('question',)
 
 class EventLocationAdmin(admin.ModelAdmin):
 	list_display = ('name', 'abbreviation', 'lat', 'lng')
@@ -55,7 +55,7 @@ class PositionManager(models.Manager):
             )
         ).order_by('position_order', 'brother__last_name')
 
-admin.site.register(rush_FAQ, RushFAQAdmin)
+# admin.site.register(rush_FAQ, RushFAQAdmin)
 admin.site.register(RushEvent, EventAdmin)
 admin.site.register(RushEventLocation, EventLocationAdmin)
 admin.site.register(RushProfile, RushProfileAdmin)

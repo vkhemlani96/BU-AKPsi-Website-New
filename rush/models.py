@@ -126,10 +126,11 @@ class RushApplication(models.Model):
 		verbose_name='Application'
 		ordering = ['timestamp']
 
-class rush_FAQ(models.Model):
-    question = models.CharField(max_length=200)
-    answer = models.TextField()
 
-    class Meta:
-        verbose_name = "Rush FAQ"
-        verbose_name_plural = "Rush FAQs"
+# class rush_FAQ(models.Model):
+#     question = models.CharField(max_length=200)
+#     answer = models.TextField()
+
+#     class Meta:
+#         verbose_name = "Rush FAQ"
+#         verbose_name_plural = "Rush FAQs"
