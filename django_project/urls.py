@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^brothers\/*', include('brothers.urls')),
     url(r'^contact/', views.contact),
     url(r'^eye2eye/', include('eye2eye.urls')),
-    # url(r'^faq/', views.faq),
+    url(r'^faq/', views.faq),
     url(r'^nccg/', include('nccg.urls')),
     url(r'^sfg/', include('sfg.urls')),
     url(r'^recruitment\/*', include('rush.urls')),
